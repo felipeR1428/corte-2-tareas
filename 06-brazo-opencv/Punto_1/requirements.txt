@@ -1,0 +1,5 @@
+# Punto 1: solo brazo, teclado serial e interfaz. Venv con el Python 3.14 actual.
+pybullet==3.2.7
+numpy>=2.3.3,<3
+Pillow>=11,<13
+pyserial==3.5

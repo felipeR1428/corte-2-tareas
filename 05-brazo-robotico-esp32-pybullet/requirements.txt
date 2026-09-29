@@ -1,0 +1,6 @@
+# PyBullet 3.2.7 se compila desde su codigo fuente en Windows / CPython 3.14.
+# Antes de instalar, preparar Microsoft C++ Build Tools (ver README).
+pybullet==3.2.7
+pyserial==3.5
+Pillow>=11,<13
+numpy>=2.3.3,<3

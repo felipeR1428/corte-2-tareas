@@ -1,0 +1,5 @@
+mediapipe==0.10.35
+opencv-contrib-python==5.0.0.93
+numpy>=2.3.3,<3
+pyserial==3.5
+Pillow>=11,<13

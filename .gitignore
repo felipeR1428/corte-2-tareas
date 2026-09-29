@@ -1,0 +1,23 @@
+# Entornos y archivos generados por Python
+.venv/
+.venv_*/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+
+# Datos descargados durante el entrenamiento, grandes y reproducibles
+**/datos_mnist/
+**/models/*.part
+
+# Salidas locales creadas desde las interfaces; las pruebas seleccionadas van en evidencia/
+**/capturas/
+**/registros/
+
+# Sistema operativo
+Thumbs.db
+.DS_Store

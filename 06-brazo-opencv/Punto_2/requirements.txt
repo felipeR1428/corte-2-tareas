@@ -1,0 +1,7 @@
+# Punto 2: solo vision, CNN, puerto USB e interfaz. Venv con el Python 3.14 actual.
+numpy>=2.3.3,<3
+Pillow>=11,<13
+pyserial==3.5
+opencv-contrib-python==5.0.0.93
+torch==2.14.0
+torchvision==0.29.0
