@@ -1,0 +1,78 @@
+[player-2] escuchando CTRL del ESP32 en UDP 15002; servidor ws://127.0.0.1:18765; Océano color [32, 152, 172] estilo clasico
+[player-2] sin servidor de pista en ws://127.0.0.1:18765 (ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 18765)); reintento en 1 s
+[lab] MQTT conectado como player-2
+[player-2] ESP32 hablando desde 127.0.0.1:36383 (primera línea: CTRL,2,3,150,-23,53,1)
+[player-2] conectado a ws://127.0.0.1:18765 (conexión #1); hola enviado (Océano, color [32, 152, 172], clasico)
+[player-2] rx 40 perd 0 (0.0 %) jitter 1.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-2.17, -6.15) vuelta 0 | última: CTRL,2,42,2100,30,63,0
+[player-2] rx 80 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (1.2, -6.0) vuelta 0 | última: CTRL,2,82,4103,4,68,0
+[player-2] rx 120 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 3 ms | esp32 127.0.0.1:36383 | carro (4.74, -5.97) vuelta 0 | última: CTRL,2,122,6100,-1,68,0
+[player-2] rx 160 perd 0 (0.0 %) jitter 1.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (8.2, -5.64) vuelta 0 | última: CTRL,2,162,8100,-16,65,0
+[player-2] rx 200 perd 0 (0.0 %) jitter 0.9 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (10.93, -3.95) vuelta 0 | última: CTRL,2,202,10100,-20,66,0
+[player-2] rx 240 perd 0 (0.0 %) jitter 0.7 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (11.46, -0.91) vuelta 0 | última: CTRL,2,242,12100,-22,63,0
+[player-2] rx 280 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (9.24, 0.85) vuelta 0 | última: CTRL,2,282,14101,-30,59,0
+[player-2] rx 320 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 2 ms | esp32 127.0.0.1:36383 | carro (6.52, -0.78) vuelta 0 | última: CTRL,2,322,16100,17,68,0
+[player-2] rx 360 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (3.56, -1.4) vuelta 0 | última: CTRL,2,362,18100,38,60,0
+[player-2] rx 400 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (2.51, 0.94) vuelta 0 | última: CTRL,2,402,20100,23,63,0
+[player-2] rx 440 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (4.43, 3.58) vuelta 0 | última: CTRL,2,442,22100,-37,60,0
+[player-2] rx 481 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (3.47, 5.85) vuelta 0 | última: CTRL,2,483,24151,-18,66,0
+[player-2] rx 521 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (0.14, 6.24) vuelta 0 | última: CTRL,2,523,26150,-6,69,0
+[player-2] rx 561 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-3.03, 5.21) vuelta 0 | última: CTRL,2,563,28150,-18,62,0
+[player-2] rx 601 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-4.64, 2.65) vuelta 0 | última: CTRL,2,603,30150,-27,63,0
+[player-2] rx 641 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-4.64, -0.37) vuelta 0 | última: CTRL,2,643,32150,52,53,0
+[player-2] rx 681 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-7.3, -0.67) vuelta 0 | última: CTRL,2,683,34153,18,66,0
+[player-2] rx 717 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-9.8, 1.54) vuelta 0 | última: CTRL,2,719,35950,-24,65,0
+[player-2] failsafe: sin CTRL del ESP32 hace más de 1 s -> vel 0
+[player-2] rx 717 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 2 ms | esp32 127.0.0.1:36383 | carro (-11.74, 2.0) vuelta 0 FAILSAFE | última: CTRL,2,719,35950,-24,65,0
+[player-2] vuelve el control del ESP32: fin del failsafe
+[player-2] rx 725 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.01, 2.1) vuelta 0 | última: CTRL,2,727,40116,-93,40,0
+[player-2] rx 765 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.75, 0.66) vuelta 0 | última: CTRL,2,767,42116,23,61,0
+[player-2] rx 805 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.24, -2.56) vuelta 0 | última: CTRL,2,807,44117,-20,67,0
+[player-2] rx 846 perd 0 (0.0 %) jitter 1.4 ms | ws conectado rtt 3 ms | esp32 127.0.0.1:36383 | carro (-10.0, -4.95) vuelta 0 | última: CTRL,2,848,46166,-11,65,0
+[player-2] rx 886 perd 0 (0.0 %) jitter 1.2 ms | ws conectado rtt 7 ms | esp32 127.0.0.1:36383 | carro (-6.64, -5.88) vuelta 0 | última: CTRL,2,888,48168,-2,66,0
+[player-2] rx 926 perd 0 (0.0 %) jitter 1.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-3.14, -6.0) vuelta 0 | última: CTRL,2,928,50166,0,71,0
+[player-2] rx 966 perd 0 (0.0 %) jitter 0.7 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (0.43, -6.01) vuelta 1 | última: CTRL,2,968,52166,-1,72,0
+[player-2] rx 1006 perd 0 (0.0 %) jitter 0.9 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (3.94, -5.98) vuelta 1 | última: CTRL,2,1008,54167,1,74,0
+[player-2] rx 1046 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (7.46, -5.78) vuelta 1 | última: CTRL,2,1048,56166,-6,67,0
+[player-2] rx 1086 perd 0 (0.0 %) jitter 0.6 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (10.48, -4.48) vuelta 1 | última: CTRL,2,1088,58166,-16,66,0
+[player-2] rx 1126 perd 0 (0.0 %) jitter 0.6 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (11.59, -1.6) vuelta 1 | última: CTRL,2,1128,60166,-18,63,0
+[player-2] rx 1166 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 2 ms | esp32 127.0.0.1:36383 | carro (9.98, 0.76) vuelta 1 | última: CTRL,2,1168,62168,-36,60,0
+[player-2] rx 1206 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (7.21, -0.17) vuelta 1 | última: CTRL,2,1208,64166,5,70,0
+[player-2] rx 1246 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 2 ms | esp32 127.0.0.1:36383 | carro (4.35, -1.56) vuelta 1 | última: CTRL,2,1248,66166,24,64,0
+[player-2] rx 1286 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (2.36, 0.16) vuelta 1 | última: CTRL,2,1288,68166,36,57,0
+[player-2] rx 1326 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (3.98, 2.88) vuelta 1 | última: CTRL,2,1328,70166,-12,62,0
+[player-2] rx 1366 perd 0 (0.0 %) jitter 0.3 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (4.17, 5.42) vuelta 1 | última: CTRL,2,1368,72166,-40,58,0
+[player-2] rx 1406 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (1.09, 6.28) vuelta 1 | última: CTRL,2,1408,74166,-5,67,0
+[player-2] rx 1446 perd 0 (0.0 %) jitter 0.3 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-2.19, 5.67) vuelta 1 | última: CTRL,2,1448,76166,-10,66,0
+[player-2] rx 1486 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 7 ms | esp32 127.0.0.1:36383 | carro (-4.49, 3.51) vuelta 1 | última: CTRL,2,1488,78167,-27,63,0
+[player-2] rx 1526 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-4.37, 0.36) vuelta 1 | última: CTRL,2,1528,80166,33,56,0
+[player-2] rx 1566 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-6.51, -0.94) vuelta 1 | última: CTRL,2,1568,82166,32,59,0
+[player-2] rx 1606 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-9.16, 1.0) vuelta 1 | última: CTRL,2,1608,84166,-15,66,0
+[player-2] rx 1646 perd 0 (0.0 %) jitter 1.2 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-11.71, 1.72) vuelta 1 | última: CTRL,2,1648,86166,-48,55,0
+[player-2] rx 1686 perd 0 (0.0 %) jitter 0.8 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.62, -1.07) vuelta 1 | última: CTRL,2,1688,88166,-16,66,0
+[player-2] rx 1726 perd 0 (0.0 %) jitter 2.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-11.31, -3.98) vuelta 1 | última: CTRL,2,1728,90166,-17,63,0
+[player-2] rx 1766 perd 0 (0.0 %) jitter 0.7 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-8.43, -5.57) vuelta 1 | última: CTRL,2,1768,92166,-3,67,0
+[player-2] rx 1806 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 10 ms | esp32 127.0.0.1:36383 | carro (-5.01, -5.98) vuelta 1 | última: CTRL,2,1808,94166,-1,67,0
+[player-2] rx 1846 perd 0 (0.0 %) jitter 0.3 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-1.49, -5.99) vuelta 1 | última: CTRL,2,1848,96167,0,70,0
+[player-2] rx 1886 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (2.06, -5.99) vuelta 2 | última: CTRL,2,1888,98166,-1,71,0
+[player-2] rx 1926 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (5.58, -5.93) vuelta 2 | última: CTRL,2,1928,100166,-1,70,0
+[player-2] rx 1966 perd 0 (0.0 %) jitter 0.8 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (8.97, -5.39) vuelta 2 | última: CTRL,2,1968,102166,-7,67,0
+[player-2] rx 2006 perd 0 (0.0 %) jitter 0.3 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (11.31, -3.35) vuelta 2 | última: CTRL,2,2008,104166,-24,64,0
+[player-2] rx 2046 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (11.21, -0.29) vuelta 2 | última: CTRL,2,2048,106166,-32,62,0
+[player-2] rx 2087 perd 0 (0.0 %) jitter 1.3 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (8.71, 0.78) vuelta 2 | última: CTRL,2,2089,108217,-28,61,0
+[player-2] rx 2127 perd 0 (0.0 %) jitter 0.7 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (6.01, -1.13) vuelta 2 | última: CTRL,2,2129,110216,19,65,0
+[player-2] rx 2167 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (3.06, -1.13) vuelta 2 | última: CTRL,2,2169,112216,36,60,0
+[player-2] rx 2207 perd 0 (0.0 %) jitter 0.2 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (2.77, 1.48) vuelta 2 | última: CTRL,2,2209,114216,21,61,0
+[player-2] rx 2247 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (4.6, 4.04) vuelta 2 | última: CTRL,2,2249,116216,-42,57,0
+[player-2] rx 2287 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (3.03, 6.02) vuelta 2 | última: CTRL,2,2289,118216,-19,64,0
+[player-2] rx 2327 perd 0 (0.0 %) jitter 0.4 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-0.32, 6.19) vuelta 2 | última: CTRL,2,2329,120216,-6,68,0
+[player-2] rx 2367 perd 0 (0.0 %) jitter 6.7 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-3.37, 4.99) vuelta 2 | última: CTRL,2,2369,122216,-15,62,0
+[player-2] rx 2407 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-4.64, 2.34) vuelta 2 | última: CTRL,2,2409,124216,-15,66,0
+[player-2] rx 2447 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-4.81, -0.57) vuelta 2 | última: CTRL,2,2449,126216,52,55,0
+[player-2] rx 2487 perd 0 (0.0 %) jitter 0.7 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-7.58, -0.48) vuelta 2 | última: CTRL,2,2489,128216,21,64,0
+[player-2] rx 2527 perd 0 (0.0 %) jitter 0.5 ms | ws conectado rtt 2 ms | esp32 127.0.0.1:36383 | carro (-10.09, 1.72) vuelta 2 | última: CTRL,2,2529,130216,-30,64,0
+[player-2] rx 2567 perd 0 (0.0 %) jitter 0.1 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.35, 0.94) vuelta 2 | última: CTRL,2,2569,132216,-20,65,0
+[player-2] rx 2592 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 0 ms | esp32 127.0.0.1:36383 | carro (-12.37, -2.21) vuelta 2 | última: CTRL,2,2594,133466,-13,64,0
+[player-2] failsafe: sin CTRL del ESP32 hace más de 1 s -> vel 0
+[player-2] rx 2592 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.08, -3.13) vuelta 2 FAILSAFE | última: CTRL,2,2594,133466,-13,64,0
+[player-2] rx 2592 perd 0 (0.0 %) jitter 0.0 ms | ws conectado rtt 1 ms | esp32 127.0.0.1:36383 | carro (-12.08, -3.13) vuelta 2 FAILSAFE | última: CTRL,2,2594,133466,-13,64,0
+[player-2] detenido (SIGTERM)

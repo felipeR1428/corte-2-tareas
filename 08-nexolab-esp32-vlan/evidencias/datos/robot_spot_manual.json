@@ -1,0 +1,30 @@
+{
+  "robot": "spot",
+  "estado": "siguiendo",
+  "t_s": 57.83,
+  "comando": [
+    10,
+    -8,
+    5
+  ],
+  "objetivo": [
+    10,
+    -8,
+    5
+  ],
+  "medido": [
+    10.03,
+    -8.18,
+    5.18
+  ],
+  "error_deg": 0.12941848525045727,
+  "error_2s": 0.8105608812611333,
+  "recibidos": 1157,
+  "perdidos": 0,
+  "perdida_pct": 0,
+  "jitter_ms": 0.04263275558139011,
+  "fps_fisica": 239.9989832443099,
+  "edad_ms": 4,
+  "caidas": 0,
+  "avance_m": 1.6759035406941696
+}

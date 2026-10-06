@@ -1,0 +1,38 @@
+# Demonios de FRR que arranca /usr/lib/frr/frrinit.sh (lo llama arrancar.sh).
+#
+# zebra, mgmtd y staticd arrancan SIEMPRE (FRR 9 no deja apagarlos):
+#   zebra   -> habla con el kernel por netlink: ve las interfaces y sus redes conectadas y es quien
+#              instala/quita rutas. "show ip route" muestra su tabla.
+#   mgmtd   -> el gestor de configuración de FRR 9 (por él pasa la config de staticd).
+#   staticd -> rutas estáticas ("ip route ..." en frr.conf). Aquí no hace falta ninguna: las tres
+#              VLAN están conectadas directamente al router, así que zebra ya las conoce como
+#              rutas "C" (connected). Queda corriendo para poder agregar una si mañana aparece una
+#              cuarta red detrás de otro router.
+# Los protocolos dinámicos quedan apagados: con un solo router y tres redes conectadas, OSPF o BGP
+# no tendrían con quién intercambiar rutas.
+bgpd=no
+ospfd=no
+ospf6d=no
+ripd=no
+ripngd=no
+isisd=no
+pimd=no
+pim6d=no
+ldpd=no
+nhrpd=no
+eigrpd=no
+babeld=no
+sharpd=no
+pbrd=no
+bfdd=no
+fabricd=no
+vrrpd=no
+pathd=no
+
+vtysh_enable=yes
+# -A 127.0.0.1: la consola de cada demonio (telnet de vty) solo escucha en el propio contenedor.
+# Se quita el "-s 90000000" que trae Alpine para zebra (búfer de netlink de 90 MB): dentro de un
+# contenedor sin privilegios no se puede pedir un búfer así y con tres interfaces no hace falta.
+zebra_options="  -A 127.0.0.1"
+mgmtd_options="  -A 127.0.0.1"
+staticd_options="-A 127.0.0.1"

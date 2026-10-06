@@ -1,0 +1,28 @@
+{
+  "robot": "nao",
+  "estado": "siguiendo",
+  "t_s": 76.67,
+  "comando": [
+    30,
+    60,
+    20
+  ],
+  "objetivo": [
+    30,
+    60,
+    20
+  ],
+  "medido": [
+    30,
+    60,
+    20
+  ],
+  "error_deg": 0.0016551327146660337,
+  "error_2s": 2.475251344284743,
+  "recibidos": 1533,
+  "perdidos": 0,
+  "perdida_pct": 0,
+  "jitter_ms": 0.007381397116270132,
+  "fps_fisica": 239.9978502192361,
+  "edad_ms": 20
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NexoLab · Laboratorio de sistemas conectados</title><link rel="stylesheet" href="/nexo.css"></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#inicio"><span class="brandmark">N</span><span>Nexo<span class="brandlight">Lab</span><small>SISTEMAS CONECTADOS</small></span></a>
+  <div class="nav-label">ESPACIO DE TRABAJO</div>
+  <nav aria-label="Secciones del laboratorio">
+    <button data-view="inicio" class="active"><span>◈</span> Vista general</button>
+    <button data-view="carreras"><span>▱</span> Zona de carreras <b>01</b></button>
+    <button data-view="robotica"><span>⌘</span> Zona robótica <b>02</b></button>
+    <button data-view="red"><span>◎</span> Red y monitoreo <b>03</b></button>
+    <button data-view="montaje"><span>▦</span> Montajes ESP32</button>
+  </nav>
+  <div class="side-info"><div class="tiny-label">ARQUITECTURA</div><strong>Tres zonas.<br>Un laboratorio.</strong><div class="side-line"></div><p>Control UDP · Física PyBullet<br>Telemetría MQTT</p><span class="version">EDICIÓN 3.0</span></div>
+  <footer class="side-footer"><span class="avatar">JR</span><div>Juan Felipe Romero<small>Ingeniería Mecatrónica · UMNG</small></div></footer>
+</aside>
+<div class="workspace">
+<header class="topbar"><div><span class="breadcrumb">Laboratorio / </span><span id="crumb">Vista general</span></div><div class="top-right"><span id="connection" class="connection">Conectando…</span><time id="clock"></time></div></header>
+<main>
+  <div class="page-heading"><div><p class="eyebrow">CONTROL, SIMULACIÓN Y TELEMETRÍA</p><h1 id="page-title">Todo el laboratorio, conectado.</h1></div><a class="button secondary" href="/api/metricas.csv" download="nexolab-metricas.csv">↓ Exportar métricas</a></div>
+  <div id="scope" class="scope"><span class="tag">ORIGEN</span><span id="scope-text">Consultando modo de ejecución…</span><span id="session-time"></span></div>
+  <section data-page="inicio">
+    <div class="stats" id="overview-stats"></div>
+    <div class="overview-grid">
+      <article class="card camera-card"><div class="card-head"><div><p class="eyebrow">ZONA 01</p><h2>El circuito está en tus manos.</h2></div><button class="text-button" data-go="carreras">Abrir carrera ↗</button></div><div class="frame"><img data-feed="pista" alt="Render de la pista PyBullet"><span class="frame-status"></span></div><div class="card-bottom"><span>3 jugadores + 3 pilotos autónomos</span><span class="accent">Física + WebSocket</span></div></article>
+      <article class="card leds-card"><div class="card-head"><div><p class="eyebrow">PLANO DE ADMINISTRACIÓN</p><h2>Seis señales, en tiempo real.</h2></div><span class="chip" id="mqtt-chip">MQTT —</span></div><p class="subtle">Estado publicado para la ESP32 esclava.</p><div id="led-bank" class="led-bank"></div><div class="led-key"><span><i class="dot OK"></i> Encendido</span><span><i class="dot LENTO"></i> Intermitente</span><span><i class="dot CAIDO"></i> Apagado</span></div><div class="slave-confirm" id="slave-confirm">Esperando confirmación de la esclava emulada.</div></article>
+    </div>
+    <div class="section-heading"><h2>Robótica en movimiento</h2><button class="text-button" data-go="robotica">Explorar los tres robots ↗</button></div><div class="robot-grid" id="robot-overview"></div>
+    <article class="card event-card"><div class="card-head"><h2>Lo que acaba de pasar</h2><span class="subtle">Cambios observados por el monitor</span></div><div id="recent-events"></div></article>
+  </section>
+  <section data-page="carreras" hidden>
+    <div class="race-grid"><article class="card"><div class="card-head"><div><p class="eyebrow">VLAN 1 · 192.168.10.0/24</p><h2>Circuito Nexo GP</h2></div><span class="chip">6 vehículos</span></div><div class="frame"><img data-feed="pista" alt="Carrera con seis vehículos y clasificación"><span class="frame-status"></span></div><div class="card-bottom"><span>Mandos UDP → clientes → servidor de pista</span><span id="race-time">—</span></div></article><article class="card"><div class="card-head"><h2>Clasificación</h2><span class="subtle">EN VIVO</span></div><div id="ranking"></div></article></div>
+    <div class="section-heading"><h2>Mandos de los jugadores</h2><span class="subtle">Pausar el mando permite comprobar el frenado por pérdida de señal.</span></div><div class="robot-grid" id="gamer-controls"></div>
+    <article class="card detail-card"><div class="card-head"><div><p class="eyebrow">CÁMARA DE SEGUIMIENTO</p><h2>Nexo GT · carrocería de competición</h2></div><span class="chip">VISTA 3D EN VIVO</span></div><div class="detail-layout"><div class="frame"><img data-feed="pista" data-resource="detalle" alt="Carro de carreras con alerón, cabina y neumáticos"><span class="frame-status"></span></div><div class="detail-copy"><h3>Una pista técnica</h3><p>Recta de salida, horquilla, eses enlazadas y retorno. El circuito incluye pianos, barreras, boxes y gradas.</p><p id="track-spec">Consultando trazado…</p><h3>Carros de competición</h3><p>Carrocería GT perfilada, cabina, franjas, luces, splitter delantero y alerón trasero. La cámara rota entre los seis vehículos.</p></div></div></article>
+  </section>
+  <section data-page="robotica" hidden>
+    <div class="robot-selector" role="group" aria-label="Seleccionar robot"><button class="selected" data-robot="spot">01 / SpotMicro</button><button data-robot="pepper">02 / Pepper</button><button data-robot="nao">03 / NAO</button></div>
+    <div class="robot-detail"><article class="card"><div class="card-head"><div><p class="eyebrow">VLAN 2 · GEMELO FÍSICO</p><h2 id="robot-title">SpotMicro / Rex</h2></div><span id="robot-state" class="chip">—</span></div><div class="frame robot-frame"><img id="robot-main-image" data-feed="spot" alt="Render físico del robot seleccionado"><span class="frame-status"></span></div><div class="card-bottom"><span id="robot-model-note">Modelo articulado de rex-gym</span><span id="robot-packets">—</span></div></article>
+    <article class="card control-card"><p class="eyebrow">ENTRADAS DEL MANDO</p><h2>Explora cada articulación.</h2><p class="subtle">Los controles manuales sustituyen las entradas del emulador y conservan el envío por UDP.</p><div id="robot-sliders"></div><div class="control-actions"><button class="button primary" id="apply-robot">Aplicar posición</button><button class="button secondary" id="auto-robot">Automático</button></div><button class="text-button" id="pause-robot">Pausar señal del mando</button><p id="control-message" class="control-message" aria-live="polite"></p></article></div>
+    <article class="card"><div class="card-head"><h2>Objetivo y respuesta del gemelo</h2><span id="robot-error" class="chip">Error —</span></div><div id="joint-readings" class="joint-readings"></div><div class="chart-wrap"><canvas id="joint-chart" aria-label="Historial de articulación objetivo y medida"></canvas></div><div class="chart-key"><span class="accent">━ Objetivo j1</span><span class="orange">━ Medido j1</span><span class="subtle">Valores en grados · últimas 60 muestras recibidas</span></div></article>
+  </section>
+  <section data-page="red" hidden>
+    <div class="network-grid"><article class="card"><div class="card-head"><div><p class="eyebrow">ARQUITECTURA CONFIGURADA</p><h2>Observar ambas zonas.</h2></div></div><div class="topology"><div class="net-node admin"><span>03 / ADMINISTRACIÓN</span><strong>Monitor + MQTT</strong><small>192.168.30.0/24</small></div><div class="net-trunk">ICMP · UDP · MQTT</div><div class="net-node router"><strong>Router inter-VLAN</strong><small>FRR + reglas de reenvío</small></div><div class="net-branches"><div class="net-node gamer"><span>01 / CARRERAS</span><strong>Pista + tres jugadores</strong><small>192.168.10.0/24</small></div><div class="net-node robots"><span>02 / ROBÓTICA</span><strong>Spot · Pepper · NAO</strong><small>192.168.20.0/24</small></div></div><div class="isolation">Gamer ↔ Robótica: bloqueo configurado</div></div><p class="topology-note" id="topology-note"></p></article><article class="card"><div class="card-head"><div><p class="eyebrow">SONDEO OBSERVADO</p><h2>Latencia de ida y vuelta</h2></div><span id="probe-label" class="chip">—</span></div><div class="big-value"><span id="rtt-value">—</span><small>ms RTT</small></div><div class="chart-wrap"><canvas id="rtt-chart" aria-label="Mediciones de latencia RTT"></canvas></div><div id="network-stats" class="network-stats"></div><p class="topology-note">RTT mide ida y vuelta. Jitter representa la variación entre muestras. No equivale a latencia unidireccional.</p></article></div>
+    <article class="card"><div class="card-head"><h2>Salud de los servicios</h2><a class="text-button" href="/api/exportar.json" download="nexolab-estado.json">↓ Exportar estado JSON</a></div><div class="table-wrap"><table><thead><tr><th>Servicio</th><th>Zona</th><th>Estado</th><th>Edad HB</th><th>RTT p95</th><th>Jitter HB</th><th>Paquetes HB</th></tr></thead><tbody id="service-table"></tbody></table></div></article>
+    <article class="card"><div class="card-head"><h2>Historial de incidentes y recuperación</h2><span class="subtle">Registro persistente JSONL</span></div><div id="all-events"></div></article>
+  </section>
+  <section data-page="montaje" hidden>
+    <div class="mount-intro"><h2>Las mismas conexiones, documentadas.</h2><p>Seis ESP32 maestras y una esclava. Alimentación analógica a 3,3 V y tierra común. Montajes ilustrados con aspecto realista. Consulta los pines en la tabla antes de cablear.</p></div>
+    <div class="mount-tabs"><button data-mount="gamer" class="selected">Mando gamer ×3</button><button data-mount="robot">Mando robótico ×3</button><button data-mount="esclava">Monitor LED ×1</button></div>
+    <div class="mount-grid"><article class="card mount-image"><img id="mount-image" src="/montaje-gamer.png" alt="Ilustración generada con IA del mando gamer"></article><article class="card"><div class="card-head"><h2>Conexiones GPIO</h2><span class="chip">ESP32</span></div><table><thead><tr><th>Pin</th><th>Conexión</th></tr></thead><tbody id="pin-table"></tbody></table><p class="topology-note">Ilustración generada con IA. La conexión exacta se determina por la tabla GPIO y el firmware; no por la posición aparente de un cable en la imagen.</p></article></div>
+  </section>
+  <footer class="page-footer"><span>NexoLab / Zonas virtualizadas de simulación físico-robótica</span><span id="refresh-info">Lectura automática cada segundo</span></footer>
+</main></div><div id="toast" class="toast" role="status" hidden></div><script src="/nexo.js"></script>
+</body></html>

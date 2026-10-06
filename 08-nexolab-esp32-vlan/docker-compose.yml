@@ -1,0 +1,439 @@
+# NexoLab 3.0: zonas virtualizadas (tres "VLAN") con ESP32, PyBullet, Docker y plano de administración.
+#
+#   docker compose up -d --build                      router, admin y las dos zonas (para ESP32 físicos)
+#   docker compose --profile emulado up -d --build    lo mismo + los 7 ESP32 emulados (sin hardware)
+#   docker compose ps                                 estado y healthchecks
+#   docker compose logs -f router                     reglas del router y su tabla de rutas
+#   docker compose exec router vtysh -c "show ip route"
+#   docker compose exec router iptables -n -v -L AISLAR_V1_V2   paquetes vlan1<->vlan2 bloqueados
+#   docker compose down                               apaga todo y borra las tres redes
+#
+# Dashboard del admin: http://localhost:18180 . Salidas (json, videos): ./resultados del PC.
+#
+# Imágenes: ${DOCKERHUB_USUARIO:-local}/nexolab-<servicio>:${NEXO_VERSION:-3.0} . Con la variable
+# DOCKERHUB_USUARIO (o un archivo .env al lado de este) se cambia la cuenta de Docker Hub sin tocar
+# este archivo. El contexto de construcción de TODAS es esta carpeta ("."), para que cada Dockerfile
+# pueda copiar comun/ (rutas, latido y MQTT compartidos); .dockerignore deja afuera lo pesado.
+
+name: nexolab-esp32
+
+# ------------------------------------------------------------------------------------------------
+# Las tres "VLAN"
+# ------------------------------------------------------------------------------------------------
+# Cada bridge separa una zona en una subred propia. Los servicios agregan rutas hacia
+# administración a través del router, cuyas reglas bloquean el reenvío entre gamer y robótica.
+# Los puertos publicados en el host son rutas de entrada adicionales: el aislamiento completo
+# debe comprobarse también a través del host y su firewall. No se certifica por declarar bridges.
+# Esta configuración no genera etiquetas 802.1Q en la tarjeta Wi-Fi de Windows.
+# Para la variante macvlan sobre subinterfaces de un host Linux, ver docker-compose.vlan-real.yml.
+# No se utiliza internal:true; el modo físico necesita los puertos publicados para recibir de ESP32.
+#
+# Cada red tiene su puerta de enlace por defecto en la .1 (la pone Docker: es la salida al PC). El
+# router va en la .254 y los contenedores agregan al arrancar la ruta hacia la otra red "via .254"
+# (variables ROUTER_IP y RUTAS; lo hace comun/lab.py: configurar_rutas()).
+networks:
+  vlan1_gamer:
+    name: nexolab_v1_gamer
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1
+  vlan2_robotica:
+    name: nexolab_v2_robotica
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
+  vlan3_admin:
+    name: nexolab_v3_admin
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.30.0/24
+          gateway: 192.168.30.1
+
+# ------------------------------------------------------------------------------------------------
+# Bloques comunes (anclas YAML: "<<: *nombre" copia el bloque en cada servicio)
+# ------------------------------------------------------------------------------------------------
+# Registro (docker logs) con tope: el controlador json-file por defecto NO rota, y aquí todos imprimen
+# algo periódico (los emuladores una línea ENVIADO 5 veces por segundo, ~17 MB por día cada uno). En
+# una corrida larga eso llenaría el disco de la máquina virtual de Docker. 3 archivos de 10 MB por
+# contenedor guardan horas de historia, de sobra para depurar.
+x-registro: &registro
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-zona-comun: &zona-comun
+  logging: *registro
+  # pybullet 3.2.7 solo tiene rueda para Linux x86_64: en un Mac M1/M2/M3 se fuerza amd64 (emulado).
+  platform: linux/amd64
+  # NET_ADMIN: permiso para cambiar la tabla de rutas DEL PROPIO contenedor ("ip route replace
+  # 192.168.30.0/24 via ..."). No da acceso a la red del PC ni a otros contenedores.
+  cap_add: [NET_ADMIN]
+  volumes:
+    - ./resultados:/app/resultados
+  # Si un servicio de una zona se cae (o lo matan en la prueba de disponibilidad), Docker lo vuelve
+  # a levantar solo. "unless-stopped": no lo revive si se detuvo a mano con "docker compose stop".
+  restart: unless-stopped
+  # Las zonas solo esperan al router (sin él no llegan al admin), NO al admin: si el admin se cae
+  # las zonas siguen funcionando aisladas (el latido y MQTT se reintentan solos, ver comun/lab.py).
+  # depends_on solo ordena el ARRANQUE; no detiene a nadie si el router se cae después.
+  depends_on:
+    router:
+      condition: service_started
+
+# Variables para los servicios de la VLAN 1 y la VLAN 2: a qué router y qué red se llega por él.
+x-env-vlan1: &env-vlan1
+  ROUTER_IP: 192.168.10.254
+  RUTAS: 192.168.30.0/24
+  ADMIN_IP: 192.168.30.10
+  PYTHONUNBUFFERED: "1"
+x-env-vlan2: &env-vlan2
+  ROUTER_IP: 192.168.20.254
+  RUTAS: 192.168.30.0/24
+  ADMIN_IP: 192.168.30.10
+  PYTHONUNBUFFERED: "1"
+
+# Los ESP32 emulados: misma imagen para los 7, el rol y el destino van como argumentos:
+#   --rol <ctrl-1..3 | ctrl-spot | ctrl-pepper | ctrl-nao | esclava>
+#   --destino <ip:puerto>   a quién manda CTRL/JOINTS por UDP (la esclava no manda nada: no lo usa)
+#   --admin <ip>            a dónde van los latidos HB y los PING (y, para la esclava, el broker MQTT)
+#   --hz                    20 como el firmware; la prueba de carga lo sube con EMU_HZ=100
+#   --piloto                ctrl-1..3: "maneja" mirando la pista por el WebSocket del servidor
+#                           (como observador), igual que un humano mirando la pantalla con el joystick
+# Están en el perfil "emulado": "docker compose up" NO los levanta (con ESP32 físicos sobrarían y
+# mandarían datos falsos al mismo jugador); "--profile emulado" sí.
+x-emulador: &emulador
+  build:
+    context: .
+    dockerfile: emulador/Dockerfile
+  image: ${DOCKERHUB_USUARIO:-local}/nexolab-emulador:${NEXO_VERSION:-3.0}
+  logging: *registro
+  platform: linux/amd64
+  cap_add: [NET_ADMIN]
+  restart: unless-stopped
+  profiles: ["emulado"]
+  depends_on:
+    router:
+      condition: service_started
+
+services:
+  # ----------------------------------------------------------------------------------------------
+  # Router inter-VLAN (Alpine + FRR + iptables): única pieza conectada a las tres redes
+  # ----------------------------------------------------------------------------------------------
+  router:
+    build:
+      context: .
+      dockerfile: router/Dockerfile
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-router:${NEXO_VERSION:-3.0}
+    hostname: router-intervlan
+    logging: *registro
+    # NET_ADMIN: poner las reglas de iptables y que zebra (FRR) maneje la tabla de rutas.
+    # NET_RAW: iptables y ping usan sockets crudos.
+    # SYS_ADMIN: zebra y mgmtd (FRR 9) la piden al arrancar (la usan para espacios de red/VRF);
+    # sin ella terminan con "privs_init: initial cap_set_proc failed" y FRR no levanta. Es menos
+    # que "privileged: true" (que daría además acceso a todos los dispositivos del PC).
+    cap_add: [NET_ADMIN, NET_RAW, SYS_ADMIN]
+    # ip_forward=1: el kernel reenvía paquetes entre interfaces (sin esto el contenedor sería un
+    # equipo más con tres tarjetas, no un router). Es por espacio de red: no cambia nada del PC.
+    # rp_filter=0: no descartar por "filtro de ruta inversa" respuestas que vuelven por otra
+    # interfaz que la de la puerta por defecto (el router tiene tres redes y una sola .1 por defecto).
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv4.conf.all.rp_filter: 0
+      net.ipv4.conf.default.rp_filter: 0
+    environment:
+      SUBRED_VLAN1: 192.168.10
+      SUBRED_VLAN2: 192.168.20
+      SUBRED_VLAN3: 192.168.30
+      ADMIN_IP: 192.168.30.10
+      HB_PUERTO: 5300
+      HB_ORIGEN: router
+      LOG_DESCARTES: 1
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.254
+      vlan2_robotica:
+        ipv4_address: 192.168.20.254
+      vlan3_admin:
+        ipv4_address: 192.168.30.254
+    restart: unless-stopped
+    # El healthcheck está en router/Dockerfile (ip_forward, regla de aislamiento y vtysh).
+
+  # ----------------------------------------------------------------------------------------------
+  # VLAN 3 - Plano de administración
+  # ----------------------------------------------------------------------------------------------
+  admin:
+    build:
+      context: .
+      dockerfile: plano-admin/admin/Dockerfile
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-admin:${NEXO_VERSION:-3.0}
+    hostname: admin
+    logging: *registro
+    cap_add: [NET_ADMIN]
+    environment:
+      ROUTER_IP: 192.168.30.254
+      RUTAS: 192.168.10.0/24,192.168.20.0/24
+      ADMIN_IP: 192.168.30.10
+      PYTHONUNBUFFERED: "1"
+      NEXO_MODO: ${NEXO_MODO:-fisico}
+      TZ: America/Bogota   # para que la hora del CSV de métricas sea la local (la imagen trae tzdata)
+    networks:
+      vlan3_admin:
+        ipv4_address: 192.168.30.10
+    ports:
+      - "1883:1883"         # Mosquitto (MQTT): ESP32 esclava física y contenedores
+      - "5300:5300/udp"     # latidos HB y eco PING/PONG ("/udp" obligatorio: si no, publica TCP)
+      - "127.0.0.1:18180:8080"         # dashboard web
+    volumes:
+      - ./resultados:/app/resultados
+    restart: unless-stopped
+    depends_on:
+      router:
+        condition: service_started
+
+  # ----------------------------------------------------------------------------------------------
+  # VLAN 1 - Zona gamer: servidor de pista + 3 jugadores
+  # ----------------------------------------------------------------------------------------------
+  track-server:
+    <<: *zona-comun
+    build:
+      context: .
+      dockerfile: zona-gamer/servidor-pista/Dockerfile
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-servidor-pista:${NEXO_VERSION:-3.0}
+    hostname: track-server
+    environment:
+      <<: *env-vlan1
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.10
+    ports:
+      - "127.0.0.1:8765:8765"   # WebSocket del estado de la pista (para mirarlo desde el PC)
+      - "127.0.0.1:8010:8000"   # visor MJPEG / último cuadro de la pista (opcional)
+    # Healthcheck: un handshake WebSocket de verdad con el cliente síncrono de la librería que ya
+    # está en la imagen (no hace falta curl), y se cierra limpio. Antes solo abría y cerraba una
+    # conexión TCP: funcionaba, pero el servidor lo tomaba como un handshake fallido y dejaba un
+    # traceback de ~20 líneas en el log cada 10 s.
+    healthcheck:
+      test: ["CMD", "python", "-c", "from websockets.sync.client import connect; connect('ws://127.0.0.1:8765', open_timeout=2).close()"]
+      interval: 10s
+      timeout: 3s
+      start_period: 30s
+      retries: 3
+
+  player-1:
+    <<: *zona-comun
+    build: &build-jugador
+      context: .
+      dockerfile: zona-gamer/jugador/Dockerfile
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-jugador:${NEXO_VERSION:-3.0}
+    hostname: player-1
+    environment:
+      <<: *env-vlan1
+      JUGADOR: 1
+      NOMBRE: Coral
+      COLOR: "218,121,67"        # rojo (r,g,b de 0 a 255)
+      ESTILO: deportivo         # clasico | deportivo | rally
+      SERVIDOR_WS: ws://192.168.10.10:8765
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.21
+    ports:
+      - "5001:5000/udp"   # CTRL del ESP32 ctrl-1 (el ESP32 físico manda a <IP del PC>:5001)
+    depends_on:
+      router:
+        condition: service_started
+      track-server:
+        condition: service_started   # el jugador reintenta el WebSocket solo si el servidor tarda
+
+  player-2:
+    <<: *zona-comun
+    build: *build-jugador
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-jugador:${NEXO_VERSION:-3.0}
+    hostname: player-2
+    environment:
+      <<: *env-vlan1
+      JUGADOR: 2
+      NOMBRE: Oceano
+      COLOR: "32,152,172"        # azul
+      ESTILO: clasico
+      SERVIDOR_WS: ws://192.168.10.10:8765
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.22
+    ports:
+      - "5002:5000/udp"
+    depends_on:
+      router:
+        condition: service_started
+      track-server:
+        condition: service_started
+
+  player-3:
+    <<: *zona-comun
+    build: *build-jugador
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-jugador:${NEXO_VERSION:-3.0}
+    hostname: player-3
+    environment:
+      <<: *env-vlan1
+      JUGADOR: 3
+      NOMBRE: Bosque
+      COLOR: "83,149,93"        # verde
+      ESTILO: rally
+      SERVIDOR_WS: ws://192.168.10.10:8765
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.23
+    ports:
+      - "5003:5000/udp"
+    depends_on:
+      router:
+        condition: service_started
+      track-server:
+        condition: service_started
+
+  # ----------------------------------------------------------------------------------------------
+  # VLAN 2 - Zona robótica: una imagen, tres robots (ROBOT=spot|pepper|nao), paradigma real-to-sim
+  # ----------------------------------------------------------------------------------------------
+  sim-spot:
+    <<: *zona-comun
+    build: &build-robot
+      context: .
+      dockerfile: zona-robotica/Dockerfile
+      args:
+        # Mallas de NAO y Pepper (licencia de SoftBank: uso no comercial y prohibido redistribuirlas).
+        # "no" (por defecto): NAO y Pepper con figuras simples, misma cinemática; es la imagen que se
+        # publica en Docker Hub. "si": quien construye acepta esa licencia y se ven con sus mallas,
+        # solo en su PC (esa imagen no se debe subir a ningún registro).
+        ACEPTO_LICENCIA_SOFTBANK: ${ACEPTO_LICENCIA_SOFTBANK:-no}
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-robot:${NEXO_VERSION:-3.0}
+    hostname: sim-spot
+    environment:
+      <<: *env-vlan2
+      ROBOT: spot
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.21
+    ports:
+      - "5101:5100/udp"   # JOINTS del ESP32 ctrl-spot
+      - "127.0.0.1:8011:8000"       # visor del robot (opcional)
+
+  sim-pepper:
+    <<: *zona-comun
+    build: *build-robot
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-robot:${NEXO_VERSION:-3.0}
+    hostname: sim-pepper
+    environment:
+      <<: *env-vlan2
+      ROBOT: pepper
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.22
+    ports:
+      - "5102:5100/udp"
+      - "127.0.0.1:8012:8000"
+
+  sim-nao:
+    <<: *zona-comun
+    build: *build-robot
+    image: ${DOCKERHUB_USUARIO:-local}/nexolab-robot:${NEXO_VERSION:-3.0}
+    hostname: sim-nao
+    environment:
+      <<: *env-vlan2
+      ROBOT: nao
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.23
+    ports:
+      - "5103:5100/udp"
+      - "127.0.0.1:8013:8000"
+
+  # ----------------------------------------------------------------------------------------------
+  # ESP32 emulados (perfil "emulado"): hacen lo mismo que el firmware, desde DENTRO de cada VLAN
+  # ----------------------------------------------------------------------------------------------
+  # Van a la IP interna del contenedor destino (no al puerto publicado del PC), como un ESP32 que
+  # estuviera conectado al mismo switch de esa VLAN. Sus latidos HB al admin cruzan el router.
+  ctrl-1:
+    <<: *emulador
+    hostname: ctrl-1
+    command: ["--http", "9090", "--rol", "ctrl-1", "--destino", "192.168.10.21:5000", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}", "--piloto", "--pista", "ws://192.168.10.10:8765"]
+    environment:
+      <<: *env-vlan1
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.31
+
+  ctrl-2:
+    <<: *emulador
+    hostname: ctrl-2
+    command: ["--http", "9090", "--rol", "ctrl-2", "--destino", "192.168.10.22:5000", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}", "--piloto", "--pista", "ws://192.168.10.10:8765"]
+    environment:
+      <<: *env-vlan1
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.32
+
+  ctrl-3:
+    <<: *emulador
+    hostname: ctrl-3
+    command: ["--http", "9090", "--rol", "ctrl-3", "--destino", "192.168.10.23:5000", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}", "--piloto", "--pista", "ws://192.168.10.10:8765"]
+    environment:
+      <<: *env-vlan1
+    networks:
+      vlan1_gamer:
+        ipv4_address: 192.168.10.33
+
+  ctrl-spot:
+    <<: *emulador
+    hostname: ctrl-spot
+    command: ["--http", "9090", "--rol", "ctrl-spot", "--destino", "192.168.20.21:5100", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}"]
+    environment:
+      <<: *env-vlan2
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.31
+
+  ctrl-pepper:
+    <<: *emulador
+    hostname: ctrl-pepper
+    command: ["--http", "9090", "--rol", "ctrl-pepper", "--destino", "192.168.20.22:5100", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}"]
+    environment:
+      <<: *env-vlan2
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.32
+
+  ctrl-nao:
+    <<: *emulador
+    hostname: ctrl-nao
+    command: ["--http", "9090", "--rol", "ctrl-nao", "--destino", "192.168.20.23:5100", "--admin", "192.168.30.10",
+              "--hz", "${EMU_HZ:-20}"]
+    environment:
+      <<: *env-vlan2
+    networks:
+      vlan2_robotica:
+        ipv4_address: 192.168.20.33
+
+  # La esclava de LEDs vive en la VLAN 3 (junto al broker): no necesita ruta por el router.
+  esclava-emulada:
+    <<: *emulador
+    hostname: esclava-emulada
+    command: ["--http", "9090", "--rol", "esclava", "--admin", "192.168.30.10"]
+    environment:
+      ADMIN_IP: 192.168.30.10
+      PYTHONUNBUFFERED: "1"
+    networks:
+      vlan3_admin:
+        ipv4_address: 192.168.30.40
+    depends_on:
+      admin:
+        condition: service_started

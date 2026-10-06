@@ -1,0 +1,93 @@
+# Prueba de aislamiento de red del tema 11, SIN las imágenes de las zonas (no hacen falta).
+#
+# Usa el router REAL (router/Dockerfile) y, en lugar de los servicios de verdad, contenedores
+# alpine "de relleno" con las MISMAS IP del contrato. Así se prueba la red sola: rutas, reenvío,
+# cortafuegos y FRR, sin PyBullet ni MQTT de por medio.
+#
+# Lo corre probar_aislamiento.py (que lo levanta, prueba y lo baja). A mano:
+#   docker compose -f pruebas/red/docker-compose.prueba-red.yml up -d --build
+#   docker compose -p t11-prueba-red down
+#
+# OJO: usa las mismas subredes (192.168.10/20/30.0/24) que el stack real "zonas-esp32": Docker no
+# deja crear dos redes con la misma subred. Correr esta prueba con el stack real apagado y BAJARLA
+# al terminar.
+
+name: t11-prueba-red
+
+# Mismas subredes que docker-compose.yml, pero las redes se llaman t11-prueba-red_vlanX (sin
+# "name:" fijo) para no confundirlas con las del stack real.
+networks:
+  vlan1_gamer:
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1
+  vlan2_robotica:
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
+  vlan3_admin:
+    ipam:
+      config:
+        - subnet: 192.168.30.0/24
+          gateway: 192.168.30.1
+
+# Contenedor de relleno: alpine que solo agrega sus rutas y se queda dormido. El "ip" de busybox
+# alcanza para "ip route replace". NET_ADMIN: cambiar su propia tabla de rutas; NET_RAW: ping.
+x-relleno: &relleno
+  image: alpine:3.20
+  cap_add: [NET_ADMIN, NET_RAW]
+  depends_on: [router]
+  # tini no está en alpine pelado: "exec sleep" + init: true de Docker para que pare rápido.
+  init: true
+
+services:
+  router:
+    build:
+      context: ../..
+      dockerfile: router/Dockerfile
+    image: ${DOCKERHUB_USUARIO:-dathinel}/zonas-esp32-router:1.0
+    cap_add: [NET_ADMIN, NET_RAW, SYS_ADMIN]   # SYS_ADMIN: la piden zebra y mgmtd (FRR 9)
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv4.conf.all.rp_filter: 0
+      net.ipv4.conf.default.rp_filter: 0
+    environment:
+      ADMIN_IP: 192.168.30.10
+    networks:
+      vlan1_gamer: {ipv4_address: 192.168.10.254}
+      vlan2_robotica: {ipv4_address: 192.168.20.254}
+      vlan3_admin: {ipv4_address: 192.168.30.254}
+
+  # Hace de player-1 (VLAN 1). Rutas como el contrato (vlan3 por el router) MÁS una ruta a la
+  # VLAN 2 por el router: es el caso "atacante" que intenta cruzar a la otra zona por el único
+  # camino que existe. El router debe descartarlo y contarlo.
+  gamer:
+    <<: *relleno
+    command: ["sh", "-c", "ip route replace 192.168.30.0/24 via 192.168.10.254 && ip route replace 192.168.20.0/24 via 192.168.10.254 && exec sleep 1d"]
+    networks:
+      vlan1_gamer: {ipv4_address: 192.168.10.21}
+
+  # Hace de player-2 pero SOLO con la ruta del contrato: sus paquetes a la VLAN 2 salen por la
+  # puerta por defecto de Docker (.1). Prueba que Docker también bloquea el paso directo entre bridges.
+  gamer-sin-ruta:
+    <<: *relleno
+    command: ["sh", "-c", "ip route replace 192.168.30.0/24 via 192.168.10.254 && exec sleep 1d"]
+    networks:
+      vlan1_gamer: {ipv4_address: 192.168.10.22}
+
+  # Hace de sim-spot (VLAN 2): igual que "gamer", con ruta a la VLAN 1 por el router.
+  robot:
+    <<: *relleno
+    command: ["sh", "-c", "ip route replace 192.168.30.0/24 via 192.168.20.254 && ip route replace 192.168.10.0/24 via 192.168.20.254 && exec sleep 1d"]
+    networks:
+      vlan2_robotica: {ipv4_address: 192.168.20.21}
+
+  # Hace de admin (VLAN 3): rutas a las dos zonas por el router, y escucha UDP 5300 para comprobar
+  # que llega el latido del router (cada nc recibe un datagrama y termina por el -w).
+  admin:
+    <<: *relleno
+    command: ["sh", "-c", "ip route replace 192.168.10.0/24 via 192.168.30.254 && ip route replace 192.168.20.0/24 via 192.168.30.254 && while :; do nc -l -u -p 5300 -w 1 >> /tmp/latidos.txt 2>/dev/null; echo >> /tmp/latidos.txt; done"]
+    networks:
+      vlan3_admin: {ipv4_address: 192.168.30.10}

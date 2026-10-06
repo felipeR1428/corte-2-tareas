@@ -1,0 +1,36 @@
+# OPCIONAL - VLAN 802.1Q de verdad (macvlan sobre subinterfaces etiquetadas). NO PROBADO en este PC.
+#
+# Para un Linux (no Docker Desktop) con una tarjeta de red cableada a un puerto TRONCAL (trunk) de
+# un switch gestionable que transporte las VLAN 10, 20 y 30. Se superpone al compose normal:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.vlan-real.yml up -d
+#
+# Qué cambia: en vez de tres bridges internos de Docker, cada red es una red "macvlan" colgada de
+# una subinterfaz 802.1Q del PC (eth0.10, eth0.20, eth0.30). Cada contenedor aparece en el switch
+# como un equipo más, con su propia MAC, dentro de SU VLAN; los ESP32 físicos (conectados a un
+# punto de acceso WiFi con una SSID por VLAN) quedarían en la misma red de capa 2 que su contenedor
+# y le hablarían directo a su IP (192.168.10.21:5000) sin pasar por los puertos publicados del PC.
+#
+# Requisitos y cuidados (por eso no se usa por defecto):
+#   - Cambiar "eth0" por el nombre real de la interfaz (ip link). Docker crea solo las subinterfaces
+#     eth0.10/.20/.30 si no existen (driver macvlan con parent "<if>.<vlan>").
+#   - El switch debe tener ese puerto como troncal con las VLAN 10/20/30 etiquetadas.
+#   - Las subredes 192.168.10/20/30.0/24 no deben chocar con la LAN real.
+#   - Con macvlan el propio PC (host) NO puede hablar con los contenedores por esa interfaz
+#     (limitación conocida de macvlan); se mira el dashboard desde otro equipo de la VLAN 3.
+#   - Los "ports:" del compose normal dejan de tener sentido en estas redes (no hay NAT del PC).
+#   - En Docker Desktop (Windows/Mac) esto NO funciona: la máquina virtual no ve la tarjeta física.
+
+networks:
+  vlan1_gamer:
+    driver: macvlan
+    driver_opts:
+      parent: eth0.10
+  vlan2_robotica:
+    driver: macvlan
+    driver_opts:
+      parent: eth0.20
+  vlan3_admin:
+    driver: macvlan
+    driver_opts:
+      parent: eth0.30

@@ -1,0 +1,8 @@
+# Lo que se copia dentro de los contenedores Linux tiene que quedar con fin de línea LF aunque se
+# clone en Windows (con core.autocrlf=true Git los convertiría a CRLF y "#!/bin/sh\r" no arranca).
+*.sh            text eol=lf
+*.conf          text eol=lf
+router/frr/*    text eol=lf
+Dockerfile      text eol=lf
+*.py            text eol=lf
+*.yml           text eol=lf

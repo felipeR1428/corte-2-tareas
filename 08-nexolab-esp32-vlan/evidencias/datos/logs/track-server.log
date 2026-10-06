@@ -1,0 +1,32 @@
+pybullet build time: Oct  5 2026 17:23:49
+[pista] arrancando servidor de pista (PyBullet DIRECT)
+[pista] visor HTTP en http://0.0.0.0:18010/
+[pista] WebSocket en ws://0.0.0.0:18765
+[lab] MQTT conectado como track-server
+pybullet build time: Oct  5 2026 17:23:49
+[pista] player-3 conectado desde ('127.0.0.1', 46082): Bosque, estilo rally, color (0.3254901960784314, 0.5843137254901961, 0.36470588235294116)
+[pista] player-2 conectado desde ('127.0.0.1', 46084): Océano, estilo clasico, color (0.12549019607843137, 0.596078431372549, 0.6745098039215687)
+[pista] player-1 conectado desde ('127.0.0.1', 46094): Coral, estilo deportivo, color (0.8549019607843137, 0.4745098039215686, 0.2627450980392157)
+[pista] fisica 239.6 Hz, atraso max 20.8 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 0, 'player-1': 0, 'auto-2': 0, 'player-2': 0, 'auto-3': 0, 'player-3': 0}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 12.5 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 0, 'player-1': 0, 'auto-2': 0, 'player-2': 0, 'auto-3': 0, 'player-3': 0}, mqtt si
+[pista] fisica 240.3 Hz, atraso max 4.2 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 0, 'player-1': 0, 'auto-2': 0, 'player-2': 0, 'auto-3': 0, 'player-3': 0}, mqtt si
+[camara] render medio 291 ms/cuadro, cola 1
+[pista] fisica 240.0 Hz, atraso max 4.2 ms, clientes 4, control {'player-1': 20.0, 'player-2': 13.0, 'player-3': 20.0}, vueltas {'auto-1': 0, 'player-1': 0, 'auto-2': 0, 'player-2': 0, 'auto-3': 1, 'player-3': 0}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 16.7 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 1, 'player-1': 1, 'auto-2': 1, 'player-2': 0, 'auto-3': 1, 'player-3': 1}, mqtt si
+[camara] render medio 269 ms/cuadro, cola 1
+[pista] fisica 240.0 Hz, atraso max 8.3 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 1, 'player-1': 1, 'auto-2': 1, 'player-2': 1, 'auto-3': 1, 'player-3': 1}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 8.3 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 1, 'player-1': 1, 'auto-2': 1, 'player-2': 1, 'auto-3': 1, 'player-3': 1}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 16.7 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 1, 'player-1': 1, 'auto-2': 1, 'player-2': 1, 'auto-3': 2, 'player-3': 1}, mqtt si
+[camara] render medio 283 ms/cuadro, cola 1
+[pista] fisica 239.1 Hz, atraso max 37.5 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 2, 'player-1': 1, 'auto-2': 2, 'player-2': 1, 'auto-3': 2, 'player-3': 1}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 4.2 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 2, 'player-1': 2, 'auto-2': 2, 'player-2': 2, 'auto-3': 2, 'player-3': 2}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 12.5 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 2, 'player-1': 2, 'auto-2': 2, 'player-2': 2, 'auto-3': 3, 'player-3': 2}, mqtt si
+[camara] render medio 269 ms/cuadro, cola 1
+[pista] fisica 240.0 Hz, atraso max 4.2 ms, clientes 4, control {'player-1': 20.5, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 2, 'player-1': 2, 'auto-2': 2, 'player-2': 2, 'auto-3': 3, 'player-3': 2}, mqtt si
+[pista] fisica 240.0 Hz, atraso max 8.3 ms, clientes 4, control {'player-1': 20.0, 'player-2': 20.0, 'player-3': 20.0}, vueltas {'auto-1': 3, 'player-1': 2, 'auto-2': 3, 'player-2': 2, 'auto-3': 3, 'player-3': 2}, mqtt si
+[pista] player-3 desconectado (su carro queda en la pista)
+[pista] player-2 desconectado (su carro queda en la pista)
+[camara] render medio 263 ms/cuadro, cola 1
+[pista] fisica 240.0 Hz, atraso max 4.2 ms, clientes 1, control {'player-1': 5.5, 'player-2': 0.5, 'player-3': 0.0}, vueltas {'auto-1': 3, 'player-1': 2, 'auto-2': 3, 'player-2': 2, 'auto-3': 3, 'player-3': 2}, mqtt si
+[pista] player-1 desconectado (su carro queda en la pista)
+[pista] fin

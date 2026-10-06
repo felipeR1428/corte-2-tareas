@@ -1,0 +1,76 @@
+pybullet build time: Oct  5 2026 17:23:49
+[robot] sin mallas de SoftBank: pepper.urdf (física con esferas, se dibuja como esqueleto)
+[lab] MQTT conectado como sim-pepper
+[sim-pepper] robot cargado; ejes: j1=hombro der. (RShoulderPitch) (-119.5, 119.5); j2=codo der. (RElbowRoll) (0.5, 89.5); j3=cabeza (HeadYaw) (-119.5, 119.5)
+[sim-pepper] mallas de SoftBank: NO (se dibuja como esqueleto)
+pybullet build time: Oct  5 2026 17:23:49
+[sim-pepper] gesto     rx=40 perd=0 jit=0.02ms err=7.99° (máx 156.74°) física=240Hz
+[sim-pepper] siguiendo rx=80 perd=0 jit=0.20ms err=1.89° (máx 47.24°) física=240Hz
+[sim-pepper] siguiendo rx=120 perd=0 jit=0.01ms err=0.78° (máx 3.70°) física=240Hz
+[sim-pepper] siguiendo rx=160 perd=0 jit=0.16ms err=0.75° (máx 3.32°) física=240Hz
+[sim-pepper] siguiendo rx=200 perd=0 jit=0.01ms err=0.90° (máx 3.80°) física=240Hz
+[sim-pepper] gesto     rx=240 perd=0 jit=0.33ms err=2.20° (máx 48.11°) física=240Hz
+[sim-pepper] gesto     rx=280 perd=0 jit=0.04ms err=2.31° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=320 perd=0 jit=0.01ms err=5.18° (máx 123.94°) física=240Hz
+[sim-pepper] siguiendo rx=360 perd=0 jit=0.05ms err=0.58° (máx 3.50°) física=240Hz
+[sim-pepper] siguiendo rx=400 perd=0 jit=0.28ms err=0.92° (máx 3.75°) física=240Hz
+[sim-pepper] siguiendo rx=440 perd=0 jit=0.10ms err=0.74° (máx 3.76°) física=240Hz
+[sim-pepper] gesto     rx=480 perd=0 jit=0.81ms err=1.75° (máx 37.19°) física=240Hz
+[sim-pepper] gesto     rx=520 perd=0 jit=0.24ms err=2.31° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=560 perd=0 jit=0.14ms err=3.76° (máx 97.51°) física=240Hz
+[sim-pepper] siguiendo rx=600 perd=0 jit=0.41ms err=1.11° (máx 3.80°) física=240Hz
+[sim-pepper] siguiendo rx=640 perd=0 jit=0.27ms err=0.58° (máx 3.57°) física=240Hz
+[sim-pepper] siguiendo rx=680 perd=0 jit=0.21ms err=0.80° (máx 3.73°) física=240Hz
+[sim-pepper] gesto     rx=720 perd=0 jit=0.07ms err=2.26° (máx 63.88°) física=240Hz
+[sim-pepper] gesto     rx=760 perd=0 jit=0.01ms err=2.31° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=800 perd=0 jit=0.06ms err=1.69° (máx 40.00°) física=240Hz
+[sim-pepper] siguiendo rx=840 perd=0 jit=0.00ms err=0.59° (máx 3.83°) física=240Hz
+[sim-pepper] siguiendo rx=880 perd=0 jit=0.60ms err=0.97° (máx 3.96°) física=240Hz
+[sim-pepper] siguiendo rx=920 perd=0 jit=0.29ms err=0.76° (máx 3.69°) física=240Hz
+[sim-pepper] gesto     rx=960 perd=0 jit=0.20ms err=5.11° (máx 122.76°) física=240Hz
+[sim-pepper] gesto     rx=1000 perd=0 jit=0.59ms err=2.31° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=1040 perd=0 jit=0.99ms err=1.27° (máx 25.65°) física=240Hz
+[sim-pepper] siguiendo rx=1080 perd=0 jit=0.43ms err=0.75° (máx 3.67°) física=240Hz
+[sim-pepper] siguiendo rx=1120 perd=0 jit=0.74ms err=0.79° (máx 3.78°) física=240Hz
+[sim-pepper] siguiendo rx=1160 perd=0 jit=1.49ms err=0.76° (máx 3.41°) física=240Hz
+[sim-pepper] gesto     rx=1200 perd=0 jit=0.32ms err=4.75° (máx 105.06°) física=240Hz
+[sim-pepper] gesto     rx=1240 perd=0 jit=0.25ms err=2.32° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=1280 perd=0 jit=0.29ms err=2.05° (máx 69.01°) física=240Hz
+[sim-pepper] siguiendo rx=1320 perd=0 jit=0.02ms err=1.72° (máx 76.55°) física=240Hz
+[sim-pepper] siguiendo rx=1360 perd=0 jit=0.03ms err=0.00° (máx 0.00°) física=240Hz
+[sim-pepper] siguiendo rx=1400 perd=0 jit=0.24ms err=1.70° (máx 50.45°) física=240Hz
+[sim-pepper] gesto     rx=1440 perd=0 jit=0.03ms err=1.57° (máx 37.41°) física=240Hz
+[sim-pepper] gesto     rx=1480 perd=0 jit=0.73ms err=2.33° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=1520 perd=0 jit=0.10ms err=4.35° (máx 123.50°) física=240Hz
+[sim-pepper] siguiendo rx=1560 perd=0 jit=0.23ms err=0.54° (máx 3.49°) física=240Hz
+[sim-pepper] siguiendo rx=1600 perd=0 jit=0.28ms err=1.09° (máx 3.69°) física=240Hz
+[sim-pepper] siguiendo rx=1640 perd=0 jit=0.07ms err=0.59° (máx 3.64°) física=240Hz
+[sim-pepper] gesto     rx=1680 perd=0 jit=0.49ms err=1.74° (máx 46.29°) física=240Hz
+[sim-pepper] gesto     rx=1720 perd=0 jit=0.77ms err=2.32° (máx 10.88°) física=240Hz
+[sim-pepper] siguiendo rx=1760 perd=0 jit=3.72ms err=4.11° (máx 98.04°) física=240Hz
+[sim-pepper] siguiendo rx=1800 perd=0 jit=0.93ms err=0.96° (máx 4.07°) física=240Hz
+[sim-pepper] siguiendo rx=1840 perd=0 jit=3.16ms err=0.56° (máx 3.67°) física=240Hz
+[sim-pepper] siguiendo rx=1880 perd=0 jit=0.77ms err=0.94° (máx 3.87°) física=240Hz
+[sim-pepper] gesto     rx=1920 perd=0 jit=0.40ms err=3.31° (máx 65.33°) física=240Hz
+pybullet build time: Oct  5 2026 17:23:49
+[robot] sin mallas de SoftBank: pepper.urdf (física con esferas, se dibuja como esqueleto)[lab] MQTT conectado como sim-pepper
+
+[sim-pepper] robot cargado; ejes: j1=hombro der. (RShoulderPitch) (-119.5, 119.5); j2=codo der. (RElbowRoll) (0.5, 89.5); j3=cabeza (HeadYaw) (-119.5, 119.5)
+[sim-pepper] mallas de SoftBank: NO (se dibuja como esqueleto)
+pybullet build time: Oct  5 2026 17:23:49
+[sim-pepper] siguiendo rx=40 perd=0 jit=0.13ms err=2.07° (máx 48.78°) física=240Hz
+[sim-pepper] siguiendo rx=80 perd=0 jit=0.01ms err=0.50° (máx 3.56°) física=240Hz
+[sim-pepper] siguiendo rx=120 perd=0 jit=1.08ms err=0.92° (máx 3.70°) física=240Hz
+[sim-pepper] gesto     rx=160 perd=0 jit=1.00ms err=5.53° (máx 122.16°) física=240Hz
+[sim-pepper] siguiendo rx=200 perd=0 jit=0.29ms err=1.92° (máx 44.40°) física=240Hz
+[sim-pepper] siguiendo rx=240 perd=0 jit=0.28ms err=0.86° (máx 3.78°) física=240Hz
+[sim-pepper] siguiendo rx=280 perd=0 jit=0.04ms err=0.76° (máx 3.81°) física=240Hz
+[sim-pepper] siguiendo rx=320 perd=0 jit=0.26ms err=0.89° (máx 4.03°) física=240Hz
+[sim-pepper] siguiendo rx=360 perd=0 jit=0.02ms err=0.72° (máx 3.74°) física=240Hz
+[sim-pepper] gesto     rx=399 perd=0 jit=0.14ms err=4.92° (máx 102.44°) física=240Hz
+[sim-pepper] siguiendo rx=440 perd=0 jit=0.24ms err=3.32° (máx 69.54°) física=240Hz
+[sim-pepper] siguiendo rx=480 perd=0 jit=0.03ms err=0.75° (máx 3.53°) física=240Hz
+[sim-pepper] siguiendo rx=520 perd=0 jit=0.31ms err=0.65° (máx 3.66°) física=240Hz
+[sim-pepper] siguiendo rx=560 perd=0 jit=0.85ms err=0.97° (máx 3.80°) física=240Hz
+[sim-pepper] siguiendo rx=600 perd=0 jit=0.56ms err=0.66° (máx 3.39°) física=240Hz
+[sim-pepper] gesto     rx=635 perd=0 jit=0.14ms err=3.07° (máx 37.52°) física=240Hz

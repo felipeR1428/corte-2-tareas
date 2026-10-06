@@ -1,0 +1,156 @@
+{
+  "tipo": "estado",
+  "t": 36.696,
+  "pista": {
+    "nombre": "Circuito Nexo GP",
+    "perimetro": 74.287,
+    "ancho": 1.8,
+    "sectores": 3
+  },
+  "carros": [
+    {
+      "id": "auto-1",
+      "x": -10.583,
+      "y": -4.313,
+      "yaw": -0.653,
+      "vel": 1.8,
+      "vuelta": 0,
+      "posicion": 3,
+      "s": 63.07,
+      "sector": 3,
+      "distancia": 63.07,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "auto-1",
+      "color": [
+        0.78,
+        0.78,
+        0.8
+      ],
+      "estilo": "auto",
+      "conectado": false,
+      "failsafe": false,
+      "reapariciones": 0
+    },
+    {
+      "id": "player-1",
+      "x": -12.04,
+      "y": 1.461,
+      "yaw": -2.321,
+      "vel": 1.33,
+      "vuelta": 0,
+      "posicion": 4,
+      "s": 56.23,
+      "sector": 3,
+      "distancia": 56.23,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "Coral",
+      "color": [
+        0.855,
+        0.475,
+        0.263
+      ],
+      "estilo": "deportivo",
+      "conectado": true,
+      "failsafe": false,
+      "reapariciones": 0
+    },
+    {
+      "id": "auto-2",
+      "x": -10.669,
+      "y": -5.069,
+      "yaw": -0.58,
+      "vel": 2.03,
+      "vuelta": 0,
+      "posicion": 2,
+      "s": 63.43,
+      "sector": 3,
+      "distancia": 63.43,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "auto-2",
+      "color": [
+        0.58,
+        0.58,
+        0.62
+      ],
+      "estilo": "auto",
+      "conectado": false,
+      "failsafe": false,
+      "reapariciones": 0
+    },
+    {
+      "id": "player-2",
+      "x": -11.166,
+      "y": 2.003,
+      "yaw": 3.077,
+      "vel": 1.5,
+      "vuelta": 0,
+      "posicion": 5,
+      "s": 55.13,
+      "sector": 3,
+      "distancia": 55.13,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "Océano",
+      "color": [
+        0.125,
+        0.596,
+        0.675
+      ],
+      "estilo": "clasico",
+      "conectado": true,
+      "failsafe": true,
+      "reapariciones": 0
+    },
+    {
+      "id": "auto-3",
+      "x": -3.607,
+      "y": -6.012,
+      "yaw": 0.004,
+      "vel": 2.29,
+      "vuelta": 0,
+      "posicion": 1,
+      "s": 70.51,
+      "sector": 3,
+      "distancia": 70.51,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "auto-3",
+      "color": [
+        0.4,
+        0.4,
+        0.44
+      ],
+      "estilo": "auto",
+      "conectado": false,
+      "failsafe": false,
+      "reapariciones": 0
+    },
+    {
+      "id": "player-3",
+      "x": -9.912,
+      "y": 1.593,
+      "yaw": 2.585,
+      "vel": 1.63,
+      "vuelta": 0,
+      "posicion": 6,
+      "s": 53.72,
+      "sector": 3,
+      "distancia": 53.72,
+      "mejor": null,
+      "ultima": null,
+      "nombre": "Bosque",
+      "color": [
+        0.325,
+        0.584,
+        0.365
+      ],
+      "estilo": "rally",
+      "conectado": true,
+      "failsafe": false,
+      "reapariciones": 0
+    }
+  ]
+}

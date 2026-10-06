@@ -1,0 +1,259 @@
+{
+  "origen": "Prueba ejecutada en navegador y procesos Python, con Mosquitto y ESP32 emuladas",
+  "docker_ejecutado": false,
+  "esp32_fisicas": false,
+  "vlan_8021q_probada": false,
+  "version": "3.0",
+  "fecha_utc": "2026-10-06T14:59:20.070Z",
+  "pruebas": [
+    {
+      "nombre": "Circuito técnico cargado",
+      "resultado": "aprobada",
+      "detalles": {
+        "nombre": "Circuito Nexo GP",
+        "perimetro_m": 74.287,
+        "ancho_m": 1.8
+      }
+    },
+    {
+      "nombre": "Los seis carros avanzan por el circuito",
+      "resultado": "aprobada",
+      "detalles": {
+        "avances_m": [
+          {
+            "id": "auto-1",
+            "metros": 35.11
+          },
+          {
+            "id": "player-1",
+            "metros": 32.66
+          },
+          {
+            "id": "auto-2",
+            "metros": 35.81
+          },
+          {
+            "id": "player-2",
+            "metros": 32.86
+          },
+          {
+            "id": "auto-3",
+            "metros": 41.37
+          },
+          {
+            "id": "player-3",
+            "metros": 32.92
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Freno por falta de control UDP",
+      "resultado": "aprobada",
+      "detalles": {
+        "jugador": "player-2",
+        "failsafe": true
+      }
+    },
+    {
+      "nombre": "Reanudación del mando y seis vehículos",
+      "resultado": "aprobada",
+      "detalles": {
+        "vehiculos": 6,
+        "control_restaurado": true
+      }
+    },
+    {
+      "nombre": "Control manual real por UDP: spot",
+      "resultado": "aprobada",
+      "detalles": {
+        "comando": [
+          10,
+          -8,
+          5
+        ],
+        "medido": [
+          10.03,
+          -8.18,
+          5.18
+        ],
+        "error_deg": 0.12941848525045727
+      }
+    },
+    {
+      "nombre": "Control manual real por UDP: pepper",
+      "resultado": "aprobada",
+      "detalles": {
+        "comando": [
+          20,
+          55,
+          -25
+        ],
+        "medido": [
+          20,
+          55,
+          -25
+        ],
+        "error_deg": 0.0009272490680416468
+      }
+    },
+    {
+      "nombre": "Control manual real por UDP: nao",
+      "resultado": "aprobada",
+      "detalles": {
+        "comando": [
+          30,
+          60,
+          20
+        ],
+        "medido": [
+          30,
+          60,
+          20
+        ],
+        "error_deg": 0.0016551327146660337
+      }
+    },
+    {
+      "nombre": "Reposo del robot por pérdida de mando",
+      "resultado": "aprobada",
+      "detalles": {
+        "robot": "nao",
+        "estado": "reposo"
+      }
+    },
+    {
+      "nombre": "Caída de Pepper y señal MQTT",
+      "resultado": "aprobada",
+      "detalles": {
+        "deteccion_observada_s": 0.553,
+        "led": "CAIDO",
+        "otros_servicios": "siguen enviando latidos"
+      }
+    },
+    {
+      "nombre": "Recuperación de Pepper",
+      "resultado": "aprobada",
+      "detalles": {
+        "servicio": "OK",
+        "led": "OK",
+        "eventos": [
+          {
+            "t": 1791298758.185,
+            "servicio": "sim-pepper",
+            "anterior": "?",
+            "estado": "CAIDO",
+            "motivo": "nunca mandó latido y no responde al ping"
+          },
+          {
+            "t": 1791298758.693,
+            "servicio": "sim-pepper",
+            "anterior": "CAIDO",
+            "estado": "OK",
+            "motivo": "latido al día"
+          },
+          {
+            "t": 1791298855.394,
+            "servicio": "sim-pepper",
+            "anterior": "OK",
+            "estado": "CAIDO",
+            "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"
+          },
+          {
+            "t": 1791298859.897,
+            "servicio": "sim-pepper",
+            "anterior": "CAIDO",
+            "estado": "OK",
+            "motivo": "latido al día"
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Exportación CSV desde el navegador",
+      "resultado": "aprobada",
+      "detalles": {
+        "archivo": "metricas_exportadas.csv"
+      }
+    },
+    {
+      "nombre": "Interfaz móvil sin desbordamiento horizontal",
+      "resultado": "aprobada",
+      "detalles": {
+        "ancho": 390
+      }
+    },
+    {
+      "nombre": "Navegador sin errores JavaScript",
+      "resultado": "aprobada",
+      "detalles": {
+        "errores": 0
+      }
+    },
+    {
+      "nombre": "Vueltas completas en el nuevo circuito",
+      "resultado": "aprobada",
+      "detalles": {
+        "vueltas": [
+          {
+            "id": "auto-1",
+            "vueltas": 3,
+            "reapariciones": 0
+          },
+          {
+            "id": "player-1",
+            "vueltas": 2,
+            "reapariciones": 0
+          },
+          {
+            "id": "auto-2",
+            "vueltas": 3,
+            "reapariciones": 0
+          },
+          {
+            "id": "player-2",
+            "vueltas": 2,
+            "reapariciones": 0
+          },
+          {
+            "id": "auto-3",
+            "vueltas": 3,
+            "reapariciones": 0
+          },
+          {
+            "id": "player-3",
+            "vueltas": 2,
+            "reapariciones": 0
+          }
+        ]
+      }
+    }
+  ],
+  "videos": [
+    {
+      "archivo": "evidencias/videos/01-panel-y-carrera.mp4",
+      "duracion_s": 42,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/02-robots-control-manual.mp4",
+      "duracion_s": 35.32,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/03-monitoreo-falla-recuperacion.mp4",
+      "duracion_s": 17.48,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/04-conexiones-esp32.mp4",
+      "duracion_s": 17.84,
+      "ancho": 1440,
+      "alto": 1000
+    }
+  ],
+  "errores_js": []
+}

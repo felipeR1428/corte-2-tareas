@@ -1,0 +1,988 @@
+{
+  "nexo": {
+    "nombre": "NexoLab",
+    "version": "3.0",
+    "modo": "software",
+    "control_emulado": true,
+    "red": "Procesos locales / loopback",
+    "evidencia": "Software ejecutado con ESP32 emuladas; sin prueba física ni VLAN 802.1Q"
+  },
+  "sondeo_transporte": "udp",
+  "eventos": [
+    {
+      "t": 1791298758.185,
+      "servicio": "track-server",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "player-1",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "player-2",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "player-3",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "sim-spot",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "sim-pepper",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "sim-nao",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.185,
+      "servicio": "router",
+      "anterior": "?",
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "track-server",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "player-1",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "player-2",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "player-3",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "sim-spot",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "sim-pepper",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298758.693,
+      "servicio": "sim-nao",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    },
+    {
+      "t": 1791298855.394,
+      "servicio": "sim-pepper",
+      "anterior": "OK",
+      "estado": "CAIDO",
+      "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"
+    },
+    {
+      "t": 1791298859.897,
+      "servicio": "sim-pepper",
+      "anterior": "CAIDO",
+      "estado": "OK",
+      "motivo": "latido al día"
+    }
+  ],
+  "t": 1791298891.5,
+  "en_marcha_s": 133.4,
+  "mqtt_conectado": true,
+  "umbrales": {
+    "hb_timeout_s": 3,
+    "rtt_p95_ms": 20,
+    "jitter_ms": 10,
+    "perdida_pct": 5,
+    "ventana_s": 60
+  },
+  "leds": [
+    "player-1",
+    "player-2",
+    "player-3",
+    "sim-spot",
+    "sim-pepper",
+    "sim-nao"
+  ],
+  "servicios": {
+    "track-server": {
+      "vlan": 1,
+      "ip": "192.168.10.10",
+      "led": false,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "track-server",
+        "ip": "127.0.0.1",
+        "edad_s": 0.25,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.374,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "fps_fisica": 240,
+        "atraso_max_ms": 4.2,
+        "resincronizaciones": 0,
+        "clientes": 4,
+        "observadores": 1,
+        "jugadores_conectados": [
+          "player-1",
+          "player-2",
+          "player-3"
+        ],
+        "control_hz": {
+          "player-1": 20,
+          "player-2": 20,
+          "player-3": 20
+        },
+        "control_perdidos": {
+          "player-1": 0,
+          "player-2": 0,
+          "player-3": 0
+        },
+        "jitter_control_ms": {
+          "player-1": 0.3,
+          "player-2": 0.4,
+          "player-3": 0.4
+        },
+        "control_rechazados": 0,
+        "mensajes_invalidos": 0,
+        "estado_hz": 20,
+        "failsafe": {
+          "player-1": false,
+          "player-2": false,
+          "player-3": false
+        },
+        "vueltas": {
+          "auto-1": 3,
+          "player-1": 2,
+          "auto-2": 3,
+          "player-2": 2,
+          "auto-3": 3,
+          "player-3": 2
+        },
+        "mejor_vuelta_s": {
+          "auto-1": 41.97,
+          "player-1": 44.85,
+          "auto-2": 40,
+          "player-2": 45.07,
+          "auto-3": 35.83,
+          "player-3": 45.13
+        },
+        "reapariciones": {
+          "auto-1": 0,
+          "player-1": 0,
+          "auto-2": 0,
+          "player-2": 0,
+          "auto-3": 0,
+          "player-3": 0
+        },
+        "servicio": "track-server",
+        "t_ms": 2845993
+      },
+      "metricas_edad_s": 1
+    },
+    "player-1": {
+      "vlan": 1,
+      "ip": "192.168.10.21",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "player-1",
+        "ip": "127.0.0.1",
+        "edad_s": 0.28,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.771,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "recibidos": 2642,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_esp32_ms": 0.06,
+        "rtt_servidor_ms": 1,
+        "rtt_servidor_prom_ms": 0.7,
+        "rtt_servidor_jitter_ms": 1.04,
+        "esp32_ip": "127.0.0.1:58199",
+        "ajenos": 0,
+        "basura": 0,
+        "ws_conectado": true,
+        "ws_conexiones": 1,
+        "controles_enviados": 2621,
+        "failsafe": false,
+        "failsafes": 0,
+        "dir": -10,
+        "vel": 67,
+        "carro_x": -9.6,
+        "carro_y": -5.16,
+        "carro_vuelta": 2,
+        "carro_puesto": 4,
+        "nombre": "Coral",
+        "estilo": "deportivo",
+        "servicio": "player-1",
+        "t_ms": 2845806
+      },
+      "metricas_edad_s": 1.2
+    },
+    "player-2": {
+      "vlan": 1,
+      "ip": "192.168.10.22",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "player-2",
+        "ip": "127.0.0.1",
+        "edad_s": 0.31,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.026,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "recibidos": 2567,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_esp32_ms": 0.05,
+        "rtt_servidor_ms": 1,
+        "rtt_servidor_prom_ms": 0.9,
+        "rtt_servidor_jitter_ms": 0.85,
+        "esp32_ip": "127.0.0.1:36383",
+        "ajenos": 0,
+        "basura": 0,
+        "ws_conectado": true,
+        "ws_conexiones": 1,
+        "controles_enviados": 2575,
+        "failsafe": false,
+        "failsafes": 1,
+        "dir": -20,
+        "vel": 65,
+        "carro_x": -12.35,
+        "carro_y": 0.94,
+        "carro_vuelta": 2,
+        "carro_puesto": 6,
+        "nombre": "Océano",
+        "estilo": "clasico",
+        "servicio": "player-2",
+        "t_ms": 2845817
+      },
+      "metricas_edad_s": 1.2
+    },
+    "player-3": {
+      "vlan": 1,
+      "ip": "192.168.10.23",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "player-3",
+        "ip": "127.0.0.1",
+        "edad_s": 0.3,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.165,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "recibidos": 2644,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_esp32_ms": 0.04,
+        "rtt_servidor_ms": 1,
+        "rtt_servidor_prom_ms": 1.5,
+        "rtt_servidor_jitter_ms": 1.67,
+        "esp32_ip": "127.0.0.1:56366",
+        "ajenos": 0,
+        "basura": 0,
+        "ws_conectado": true,
+        "ws_conexiones": 1,
+        "controles_enviados": 2622,
+        "failsafe": false,
+        "failsafes": 0,
+        "dir": -16,
+        "vel": 64,
+        "carro_x": -12.09,
+        "carro_y": -2.88,
+        "carro_vuelta": 2,
+        "carro_puesto": 5,
+        "nombre": "Bosque",
+        "estilo": "rally",
+        "servicio": "player-3",
+        "t_ms": 2845825
+      },
+      "metricas_edad_s": 1.2
+    },
+    "sim-spot": {
+      "vlan": 2,
+      "ip": "192.168.20.21",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "sim-spot",
+        "ip": "127.0.0.1",
+        "edad_s": 0.26,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 1.136,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "robot": "spot",
+        "estado": "siguiendo",
+        "recibidos": 2640,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_ms": 0.387,
+        "error_realsim_deg": 1.728,
+        "error_realsim_deg_max": 13.848,
+        "error_por_j_deg": [
+          1.29,
+          2.032,
+          1.863
+        ],
+        "fps_fisica": 240,
+        "recortes": 0,
+        "ajenos": 0,
+        "basura": 0,
+        "edad_ultimo_ms": 21,
+        "comando": [
+          -11.7,
+          3.2,
+          13.6
+        ],
+        "medido": [
+          -11.28,
+          2.03,
+          2.28
+        ],
+        "caidas": 0,
+        "trotando": false,
+        "avance_m": 4.369,
+        "servicio": "sim-spot",
+        "t_ms": 2846258
+      },
+      "metricas_edad_s": 0.7
+    },
+    "sim-pepper": {
+      "vlan": 2,
+      "ip": "192.168.20.22",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298859.9,
+      "vivo": "1",
+      "hb": {
+        "origen": "sim-pepper",
+        "ip": "127.0.0.1",
+        "edad_s": 0.91,
+        "seq": 31,
+        "recibidos": 130,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 1,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.278,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "robot": "pepper",
+        "estado": "siguiendo",
+        "recibidos": 600,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_ms": 0.564,
+        "error_realsim_deg": 0.662,
+        "error_realsim_deg_max": 3.392,
+        "error_por_j_deg": [
+          0.978,
+          0.587,
+          0.421
+        ],
+        "fps_fisica": 240,
+        "recortes": 0,
+        "ajenos": 0,
+        "basura": 0,
+        "edad_ultimo_ms": 0,
+        "comando": [
+          -43.7,
+          4.1,
+          -24.5
+        ],
+        "medido": [
+          -46.06,
+          4.01,
+          -23.99
+        ],
+        "servicio": "sim-pepper",
+        "t_ms": 2845287
+      },
+      "metricas_edad_s": 1.7
+    },
+    "sim-nao": {
+      "vlan": 2,
+      "ip": "192.168.20.23",
+      "led": true,
+      "estado": "OK",
+      "motivo": "latido al día",
+      "desde": 1791298758.7,
+      "vivo": "1",
+      "hb": {
+        "origen": "sim-nao",
+        "ip": "127.0.0.1",
+        "edad_s": 0.24,
+        "seq": 133,
+        "recibidos": 134,
+        "perdidos": 0,
+        "desordenados": 0,
+        "reinicios": 0,
+        "perdida_total_pct": 0,
+        "perdida_60s_pct": 0,
+        "jitter_ms": 0.093,
+        "pings": 0
+      },
+      "ping": null,
+      "metricas": {
+        "robot": "nao",
+        "estado": "gesto",
+        "recibidos": 2566,
+        "perdidos": 0,
+        "perdida_pct": 0,
+        "desordenados": 0,
+        "jitter_ms": 0.202,
+        "error_realsim_deg": 4.414,
+        "error_realsim_deg_max": 125.071,
+        "error_por_j_deg": [
+          10.531,
+          1.99,
+          0.719
+        ],
+        "fps_fisica": 240,
+        "recortes": 0,
+        "ajenos": 0,
+        "basura": 0,
+        "edad_ultimo_ms": 37,
+        "comando": [
+          58.5,
+          76.7,
+          3.6
+        ],
+        "medido": [
+          -64.43,
+          28.75,
+          -20.05
+        ],
+        "servicio": "sim-nao",
+        "t_ms": 2845940
+      },
+      "metricas_edad_s": 1.1
+    },
+    "router": {
+      "vlan": 3,
+      "ip": "192.168.30.254",
+      "led": false,
+      "estado": "CAIDO",
+      "motivo": "nunca mandó latido y no responde al ping",
+      "desde": 1791298758.2,
+      "vivo": null,
+      "hb": null,
+      "ping": null,
+      "metricas": null,
+      "metricas_edad_s": null
+    }
+  },
+  "otros_origenes": [
+    {
+      "origen": "ctrl-1",
+      "ip": "127.0.0.1",
+      "edad_s": 0.41,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.237,
+      "pings": 67
+    },
+    {
+      "origen": "ctrl-2",
+      "ip": "127.0.0.1",
+      "edad_s": 0.39,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.097,
+      "pings": 67
+    },
+    {
+      "origen": "ctrl-3",
+      "ip": "127.0.0.1",
+      "edad_s": 0.41,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.088,
+      "pings": 67
+    },
+    {
+      "origen": "ctrl-nao",
+      "ip": "127.0.0.1",
+      "edad_s": 0.39,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.393,
+      "pings": 67
+    },
+    {
+      "origen": "ctrl-pepper",
+      "ip": "127.0.0.1",
+      "edad_s": 0.41,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.06,
+      "pings": 67
+    },
+    {
+      "origen": "ctrl-spot",
+      "ip": "127.0.0.1",
+      "edad_s": 0.41,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.031,
+      "pings": 67
+    },
+    {
+      "origen": "esclava",
+      "ip": "127.0.0.1",
+      "edad_s": 0.41,
+      "seq": 133,
+      "recibidos": 134,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0.315,
+      "pings": 0
+    },
+    {
+      "origen": "sondeo-admin",
+      "ip": "127.0.0.1",
+      "edad_s": null,
+      "seq": null,
+      "recibidos": 0,
+      "perdidos": 0,
+      "desordenados": 0,
+      "reinicios": 0,
+      "perdida_total_pct": 0,
+      "perdida_60s_pct": 0,
+      "jitter_ms": 0,
+      "pings": 134
+    }
+  ],
+  "sondeos_extra": {
+    "eco-admin-local": {
+      "ip": "127.0.0.1",
+      "intentos_60s": 60,
+      "disp_60s_pct": 100,
+      "disp_total_pct": 100,
+      "total": 134,
+      "total_ok": 134,
+      "fallos_seguidos": 0,
+      "alguna_vez_ok": true,
+      "rtt_ultimo_ms": 0.076,
+      "rtt_prom_ms": 0.169,
+      "rtt_p95_ms": 0.263,
+      "rtt_max_ms": 3.753,
+      "jitter_ms": 0.222,
+      "historial": [
+        [
+          59.3,
+          0.03
+        ],
+        [
+          58.3,
+          0.074
+        ],
+        [
+          57.3,
+          0.106
+        ],
+        [
+          56.3,
+          0.029
+        ],
+        [
+          55.3,
+          0.118
+        ],
+        [
+          54.3,
+          0.032
+        ],
+        [
+          53.3,
+          0.154
+        ],
+        [
+          52.3,
+          0.263
+        ],
+        [
+          51.3,
+          0.058
+        ],
+        [
+          50.3,
+          0.079
+        ],
+        [
+          49.3,
+          0.091
+        ],
+        [
+          48.3,
+          0.056
+        ],
+        [
+          47.3,
+          0.058
+        ],
+        [
+          46.3,
+          1.336
+        ],
+        [
+          45.3,
+          0.111
+        ],
+        [
+          44.3,
+          0.075
+        ],
+        [
+          43.3,
+          0.032
+        ],
+        [
+          42.3,
+          0.029
+        ],
+        [
+          41.3,
+          3.753
+        ],
+        [
+          40.3,
+          0.114
+        ],
+        [
+          39.3,
+          0.051
+        ],
+        [
+          38.3,
+          0.101
+        ],
+        [
+          37.3,
+          0.057
+        ],
+        [
+          36.3,
+          0.142
+        ],
+        [
+          35.3,
+          0.039
+        ],
+        [
+          34.3,
+          0.031
+        ],
+        [
+          33.3,
+          0.12
+        ],
+        [
+          32.3,
+          0.139
+        ],
+        [
+          31.3,
+          0.068
+        ],
+        [
+          30.3,
+          0.056
+        ],
+        [
+          29.3,
+          0.139
+        ],
+        [
+          28.3,
+          0.134
+        ],
+        [
+          27.3,
+          0.048
+        ],
+        [
+          26.3,
+          0.046
+        ],
+        [
+          25.3,
+          0.063
+        ],
+        [
+          24.3,
+          0.087
+        ],
+        [
+          23.3,
+          0.077
+        ],
+        [
+          22.3,
+          0.028
+        ],
+        [
+          21.3,
+          0.058
+        ],
+        [
+          20.3,
+          0.087
+        ],
+        [
+          19.3,
+          0.115
+        ],
+        [
+          18.3,
+          0.139
+        ],
+        [
+          17.3,
+          0.073
+        ],
+        [
+          16.3,
+          0.116
+        ],
+        [
+          15.3,
+          0.047
+        ],
+        [
+          14.3,
+          0.046
+        ],
+        [
+          13.3,
+          0.079
+        ],
+        [
+          12.3,
+          0.095
+        ],
+        [
+          11.3,
+          0.027
+        ],
+        [
+          10.3,
+          0.096
+        ],
+        [
+          9.3,
+          0.114
+        ],
+        [
+          8.3,
+          0.03
+        ],
+        [
+          7.3,
+          0.135
+        ],
+        [
+          6.3,
+          0.05
+        ],
+        [
+          5.3,
+          0.378
+        ],
+        [
+          4.3,
+          0.051
+        ],
+        [
+          3.3,
+          0.11
+        ],
+        [
+          2.3,
+          0.081
+        ],
+        [
+          1.3,
+          0.083
+        ],
+        [
+          0.3,
+          0.076
+        ]
+      ]
+    }
+  },
+  "otras_metricas": {
+    "esclava": {
+      "datos": {
+        "origen": "ESP32 emulada",
+        "leds": {
+          "player-1": "OK",
+          "player-2": "OK",
+          "player-3": "OK",
+          "sim-spot": "OK",
+          "sim-pepper": "OK",
+          "sim-nao": "OK"
+        },
+        "mqtt_ok": true,
+        "t_ms": 132050
+      },
+      "edad_s": 1.4
+    }
+  },
+  "vivos": {
+    "admin": "1",
+    "player-3": "1",
+    "player-2": "1",
+    "player-1": "1",
+    "sim-spot": "1",
+    "sim-nao": "1",
+    "sim-pepper": "1",
+    "track-server": "1"
+  }
+}

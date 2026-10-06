@@ -1,0 +1,9 @@
+{
+  "name": "nexolab-evidencias",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Herramientas opcionales para grabar las pruebas locales de NexoLab",
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

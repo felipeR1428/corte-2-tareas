@@ -1,0 +1,28 @@
+{
+  "robot": "pepper",
+  "estado": "siguiendo",
+  "t_s": 67.33,
+  "comando": [
+    20,
+    55,
+    -25
+  ],
+  "objetivo": [
+    20,
+    55,
+    -25
+  ],
+  "medido": [
+    20,
+    55,
+    -25
+  ],
+  "error_deg": 0.0009272490680416468,
+  "error_2s": 1.7243315079676524,
+  "recibidos": 1347,
+  "perdidos": 0,
+  "perdida_pct": 0,
+  "jitter_ms": 0.06735551721244515,
+  "fps_fisica": 239.98893866981376,
+  "edad_ms": 8
+}

@@ -1,0 +1,24 @@
+{"t": 1791298758.185, "servicio": "track-server", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "player-1", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "player-2", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "player-3", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "sim-spot", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "sim-pepper", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "sim-nao", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.185, "servicio": "router", "anterior": "?", "estado": "CAIDO", "motivo": "nunca mandó latido y no responde al ping"}
+{"t": 1791298758.693, "servicio": "track-server", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "player-1", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "player-2", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "player-3", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "sim-spot", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "sim-pepper", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298758.693, "servicio": "sim-nao", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298855.394, "servicio": "sim-pepper", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298859.897, "servicio": "sim-pepper", "anterior": "CAIDO", "estado": "OK", "motivo": "latido al día"}
+{"t": 1791298892.434, "servicio": "sim-nao", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298893.435, "servicio": "sim-pepper", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298894.936, "servicio": "sim-spot", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298895.936, "servicio": "player-3", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298896.937, "servicio": "player-2", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298897.938, "servicio": "player-1", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}
+{"t": 1791298898.939, "servicio": "track-server", "anterior": "OK", "estado": "CAIDO", "motivo": "vivo=0 por MQTT (se despidió o saltó su LWT)"}

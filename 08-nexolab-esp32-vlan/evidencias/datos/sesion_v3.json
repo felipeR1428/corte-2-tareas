@@ -1,0 +1,44 @@
+{
+  "version": "3.0",
+  "sesion_utc": "2026-10-06T14:59:20.070Z",
+  "documentacion": "README.md",
+  "capturas_png": 17,
+  "videos_mp4": [
+    {
+      "archivo": "evidencias/videos/01-panel-y-carrera.mp4",
+      "duracion_s": 42,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/02-robots-control-manual.mp4",
+      "duracion_s": 35.32,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/03-monitoreo-falla-recuperacion.mp4",
+      "duracion_s": 17.48,
+      "ancho": 1440,
+      "alto": 1000
+    },
+    {
+      "archivo": "evidencias/videos/04-conexiones-esp32.mp4",
+      "duracion_s": 17.84,
+      "ancho": 1440,
+      "alto": 1000
+    }
+  ],
+  "gif": {
+    "cantidad": 4,
+    "ancho_px": 720,
+    "fps": 5,
+    "fuente": "MP4 de la misma sesión; reducción de cuadros y paleta sin cambiar la velocidad"
+  },
+  "pruebas_unitarias": 57,
+  "pruebas_integracion": 14,
+  "esp32_fisicas": false,
+  "docker_ejecutado": false,
+  "vlan_8021q_probada": false,
+  "montajes": "Ilustraciones generadas con IA; tablas GPIO y firmware son la referencia para cablear"
+}

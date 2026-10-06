@@ -1,0 +1,86 @@
+[monitor] sondeo ICMP a: eco-admin-local=127.0.0.1
+[monitor] umbrales: HB 3 s, RTT p95 20 ms, jitter 10 ms, pérdida 5 %
+[monitor] CSV en /workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/resultados/sesion-evidencias/admin_metricas.csv
+[monitor] escuchando latidos y PING en UDP 15300
+[monitor] MQTT conectado a 127.0.0.1:18883
+[monitor] dashboard en http://0.0.0.0:18180/
+[monitor] nuevo origen de latidos: ctrl-1 desde 127.0.0.1
+[monitor] nuevo origen de latidos: ctrl-2 desde 127.0.0.1
+[monitor] track-server: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] player-1: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] player-2: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] player-3: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] sim-spot: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] sim-pepper: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] sim-nao: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] router: ? -> CAIDO (nunca mandó latido y no responde al ping)
+[monitor] nuevo origen de latidos: player-2 desde 127.0.0.1
+[monitor] nuevo origen de latidos: sondeo-admin desde 127.0.0.1
+[monitor] nuevo origen de latidos: player-3 desde 127.0.0.1
+[monitor] nuevo origen de latidos: ctrl-3 desde 127.0.0.1
+[monitor] nuevo origen de latidos: ctrl-spot desde 127.0.0.1
+[monitor] nuevo origen de latidos: ctrl-pepper desde 127.0.0.1
+[monitor] nuevo origen de latidos: ctrl-nao desde 127.0.0.1
+[monitor] nuevo origen de latidos: esclava desde 127.0.0.1
+[monitor] nuevo origen de latidos: player-1 desde 127.0.0.1
+[monitor] nuevo origen de latidos: sim-pepper desde 127.0.0.1
+[monitor] nuevo origen de latidos: sim-spot desde 127.0.0.1
+[monitor] nuevo origen de latidos: track-server desde 127.0.0.1
+[monitor] nuevo origen de latidos: sim-nao desde 127.0.0.1
+[monitor] track-server: CAIDO -> OK (latido al día)
+[monitor] player-1: CAIDO -> OK (latido al día)
+[monitor] player-2: CAIDO -> OK (latido al día)
+[monitor] player-3: CAIDO -> OK (latido al día)
+[monitor] sim-spot: CAIDO -> OK (latido al día)
+[monitor] sim-pepper: CAIDO -> OK (latido al día)
+[monitor] sim-nao: CAIDO -> OK (latido al día)
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 48856)
+Traceback (most recent call last):
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/panel/gateway.py", line 57, in get
+    h._responder(200, typ, body)
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/plano-admin/admin/monitor.py", line 668, in _responder
+    self.wfile.write(cuerpo)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socketserver.py", line 845, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/plano-admin/admin/monitor.py", line 672, in do_GET
+    if gateway.get(self, ruta):
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/panel/gateway.py", line 59, in get
+    json_reply(h, 503, {'error': 'servicio sin respuesta', 'zona': parts[3]})
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/panel/gateway.py", line 33, in json_reply
+    h._responder(code, 'application/json; charset=utf-8',
+  File "/workspace/scratch/f3fbf0fd6d8f/nexolab_v3_work/08-NexoLab-ESP32-VLAN/plano-admin/admin/monitor.py", line 667, in _responder
+    self.end_headers()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/server.py", line 542, in end_headers
+    self.flush_headers()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/server.py", line 546, in flush_headers
+    self.wfile.write(b"".join(self._headers_buffer))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socketserver.py", line 845, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
+[monitor] sim-pepper: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] sim-pepper: CAIDO -> OK (latido al día)
+[monitor] sim-nao: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] sim-pepper: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] sim-spot: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] player-3: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] player-2: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] player-1: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))
+[monitor] track-server: OK -> CAIDO (vivo=0 por MQTT (se despidió o saltó su LWT))

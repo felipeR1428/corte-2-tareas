@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+entorno/
+.venv/
+node_modules/
+resultados/
+pruebas/resultados/
+modelos/
+zona-robotica/modelos/
+*.zip
+*.rar
+core
+.env
+
+# Las capturas archivadas son parte de la entrega. La regla global del repositorio
+# ignora carpetas llamadas capturas; esta excepción conserva las de la tarea 8.
+!evidencias/capturas/
+!evidencias/capturas/*.png

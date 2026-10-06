@@ -1,0 +1,68 @@
+pybullet build time: Oct  5 2026 17:23:49
+test_basura_devuelve_none_sin_excepcion (pruebas.test_protocolo.TestBasura.test_basura_devuelve_none_sin_excepcion) ... ok
+test_datagrama_maximo_udp_de_basura (pruebas.test_protocolo.TestBasura.test_datagrama_maximo_udp_de_basura) ... ok
+test_defecto_joints_acepta_nan_e_infinito (pruebas.test_protocolo.TestBasura.test_defecto_joints_acepta_nan_e_infinito)
+DEFECTO ya corregido (comun/protocolo.py, leer JOINTS): float("nan") y float("inf") son válidos en ... ok
+test_defecto_leer_con_tipo_que_no_es_texto (pruebas.test_protocolo.TestBasura.test_defecto_leer_con_tipo_que_no_es_texto)
+DEFECTO ya corregido (comun/protocolo.py, leer): la doc dice "Nunca lanza excepción", pero si se le ... ok
+test_defecto_reinicio_perdiendo_los_primeros (pruebas.test_protocolo.TestContadorSecuencia.test_defecto_reinicio_perdiendo_los_primeros)
+DEFECTO ya corregido (comun/protocolo.py, ContadorSecuencia.registrar): si el emisor se reinicia ... ok
+test_defecto_repetido_con_seq_pequeno_cuenta_como_reinicio (pruebas.test_protocolo.TestContadorSecuencia.test_defecto_repetido_con_seq_pequeno_cuenta_como_reinicio)
+DEFECTO menor, ya corregido (mismo método): la condición `seq <= 2` se evalúa antes que el caso ... ok
+test_desorden (pruebas.test_protocolo.TestContadorSecuencia.test_desorden) ... ok
+test_perdidas_por_salto (pruebas.test_protocolo.TestContadorSecuencia.test_perdidas_por_salto) ... ok
+test_perdidas_uno_de_cada_diez (pruebas.test_protocolo.TestContadorSecuencia.test_perdidas_uno_de_cada_diez) ... ok
+test_primer_seq_no_es_cero (pruebas.test_protocolo.TestContadorSecuencia.test_primer_seq_no_es_cero) ... ok
+test_reinicio_del_emisor_vuelve_a_cero (pruebas.test_protocolo.TestContadorSecuencia.test_reinicio_del_emisor_vuelve_a_cero) ... ok
+test_reinicio_por_salto_grande_hacia_atras (pruebas.test_protocolo.TestContadorSecuencia.test_reinicio_por_salto_grande_hacia_atras) ... ok
+test_repetido (pruebas.test_protocolo.TestContadorSecuencia.test_repetido) ... ok
+test_sin_perdidas (pruebas.test_protocolo.TestContadorSecuencia.test_sin_perdidas) ... ok
+test_vacio (pruebas.test_protocolo.TestContadorSecuencia.test_vacio) ... ok
+test_armar_acepta_flotantes_y_trunca (pruebas.test_protocolo.TestCtrl.test_armar_acepta_flotantes_y_trunca) ... ok
+test_armar_formato_exacto (pruebas.test_protocolo.TestCtrl.test_armar_formato_exacto) ... ok
+test_armar_recorta_a_limites (pruebas.test_protocolo.TestCtrl.test_armar_recorta_a_limites) ... ok
+test_boton_solo_uno_es_apretado (pruebas.test_protocolo.TestCtrl.test_boton_solo_uno_es_apretado) ... ok
+test_boton_verdadero_al_armar (pruebas.test_protocolo.TestCtrl.test_boton_verdadero_al_armar) ... ok
+test_decimales_no_se_aceptan_en_ctrl (pruebas.test_protocolo.TestCtrl.test_decimales_no_se_aceptan_en_ctrl) ... ok
+test_ida_y_vuelta (pruebas.test_protocolo.TestCtrl.test_ida_y_vuelta) ... ok
+test_jugador_fuera_de_1_a_3_se_ignora (pruebas.test_protocolo.TestCtrl.test_jugador_fuera_de_1_a_3_se_ignora) ... ok
+test_lee_bytes_y_quita_salto_de_linea (pruebas.test_protocolo.TestCtrl.test_lee_bytes_y_quita_salto_de_linea) ... ok
+test_leer_recorta_a_limites (pruebas.test_protocolo.TestCtrl.test_leer_recorta_a_limites) ... ok
+test_limites_exactos_se_respetan (pruebas.test_protocolo.TestCtrl.test_limites_exactos_se_respetan) ... ok
+test_caso_a_mano (pruebas.test_protocolo.TestJitter.test_caso_a_mano)
+El emisor manda cada 20 ms (t = 0, 20, 40, 60) y el receptor los ve llegar en su propio ... ok
+test_converge_a_variacion_sostenida (pruebas.test_protocolo.TestJitter.test_converge_a_variacion_sostenida) ... ok
+test_retardo_constante_no_da_jitter (pruebas.test_protocolo.TestJitter.test_retardo_constante_no_da_jitter) ... ok
+test_un_paquete_raro_mueve_poco (pruebas.test_protocolo.TestJitter.test_un_paquete_raro_mueve_poco) ... ok
+test_angulos_enteros_tambien_valen (pruebas.test_protocolo.TestJoints.test_angulos_enteros_tambien_valen) ... ok
+test_armar_formato_un_decimal (pruebas.test_protocolo.TestJoints.test_armar_formato_un_decimal) ... ok
+test_campos_de_menos_o_de_mas (pruebas.test_protocolo.TestJoints.test_campos_de_menos_o_de_mas) ... ok
+test_ida_y_vuelta_los_tres_robots (pruebas.test_protocolo.TestJoints.test_ida_y_vuelta_los_tres_robots) ... ok
+test_j3_por_defecto_cero (pruebas.test_protocolo.TestJoints.test_j3_por_defecto_cero) ... ok
+test_robot_desconocido_o_en_mayusculas (pruebas.test_protocolo.TestJoints.test_robot_desconocido_o_en_mayusculas) ... ok
+test_campos_mal (pruebas.test_protocolo.TestLatidos.test_campos_mal) ... ok
+test_los_tres_tipos (pruebas.test_protocolo.TestLatidos.test_los_tres_tipos) ... ok
+test_origen_con_guion_y_numeros (pruebas.test_protocolo.TestLatidos.test_origen_con_guion_y_numeros) ... ok
+test_tipo_desconocido_o_minusculas (pruebas.test_protocolo.TestLatidos.test_tipo_desconocido_o_minusculas) ... ok
+test_manual_robot_preserves_values (pruebas.test_nexo.TestControl.test_manual_robot_preserves_values) ... ok
+test_pause_removes_stale_manual_input (pruebas.test_nexo.TestControl.test_pause_removes_stale_manual_input) ... ok
+test_rejects_invalid_numeric_payloads (pruebas.test_nexo.TestControl.test_rejects_invalid_numeric_payloads) ... ok
+test_rejects_missing_axes_and_invalid_buttons (pruebas.test_nexo.TestControl.test_rejects_missing_axes_and_invalid_buttons) ... ok
+test_unknown_modes_rejected (pruebas.test_nexo.TestControl.test_unknown_modes_rejected) ... ok
+test_cross_origin_simple_request_rejected (pruebas.test_nexo.TestGateway.test_cross_origin_simple_request_rejected) ... ok
+test_manual_control_does_not_forward_user_selected_destination (pruebas.test_nexo.TestGateway.test_manual_control_does_not_forward_user_selected_destination) ... ok
+test_non_json_control_and_oversize_rejected (pruebas.test_nexo.TestGateway.test_non_json_control_and_oversize_rejected) ... ok
+test_offline_renderer_returns_503_not_old_image (pruebas.test_nexo.TestGateway.test_offline_renderer_returns_503_not_old_image) ... ok
+test_only_whitelisted_view_resources (pruebas.test_nexo.TestGateway.test_only_whitelisted_view_resources) ... ok
+test_physical_mode_blocks_web_controls (pruebas.test_nexo.TestGateway.test_physical_mode_blocks_web_controls) ... ok
+test_cierre_sin_salto (pruebas.test_pista_gp.CircuitoGP.test_cierre_sin_salto) ... ok
+test_curvas_en_ambos_sentidos (pruebas.test_pista_gp.CircuitoGP.test_curvas_en_ambos_sentidos) ... ok
+test_malla_gt_valida (pruebas.test_pista_gp.CircuitoGP.test_malla_gt_valida) ... ok
+test_muestreo_para_clientes (pruebas.test_pista_gp.CircuitoGP.test_muestreo_para_clientes) ... ok
+test_proyeccion_de_carriles (pruebas.test_pista_gp.CircuitoGP.test_proyeccion_de_carriles) ... ok
+test_proyeccion_del_centro (pruebas.test_pista_gp.CircuitoGP.test_proyeccion_del_centro) ... ok
+
+----------------------------------------------------------------------
+Ran 57 tests in 0.032s
+
+OK
