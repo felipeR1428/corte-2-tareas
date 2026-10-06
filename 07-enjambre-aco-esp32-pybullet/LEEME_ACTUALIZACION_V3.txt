@@ -1,0 +1,96 @@
+ACTUALIZACION V3 - LABERINTO MULTIRRUTA
+
+Archivo nuevo: Enjambre_ACO_Laberinto_Multirruta_V3.zip
+
+CAMBIOS
+
+- Mapa 21 x 17: 181 celdas transitables, 42 cruces, 9 callejones.
+- 23 rutas minimas posibles de 40 pasos (20 m en la escala del modelo).
+- Ocho hormigas y 160 iteraciones por nodo: 1280 candidatas evaluadas.
+- Hasta 12 alternativas guardadas en cada ESP32.
+- Los nodos intercambian sus elecciones y evitan repetir rutas del mismo costo.
+- El panel muestra candidatas, alternativas y numero real de rutas diferentes.
+- Ver alternativas exploradas dibuja rutas recibidas con lineas discontinuas.
+- Se conserva la correccion del proxy UDP de Docker Desktop.
+
+1. ACTUALIZAR EL COMPUTADOR
+
+Descarga el ZIP usando una red con internet y extraelo.
+Dentro encontraras la carpeta Enjambre_ACO_ESP32_PyBullet.
+
+Antes de copiar, detén el contenedor en PowerShell:
+
+  cd "C:\Users\Asus\Desktop\Enjambre_ACO_ESP32_PyBullet"
+  docker compose stop gemelo
+
+Copia el contenido de la carpeta extraida dentro del proyecto existente:
+
+  C:\Users\Asus\Desktop\Enjambre_ACO_ESP32_PyBullet
+
+Acepta reemplazar los archivos. Deben quedar compose.yaml, firmware y
+simulador directamente dentro de esa carpeta; evita una carpeta duplicada
+Enjambre_ACO_ESP32_PyBullet dentro de otra con el mismo nombre.
+
+2. ACTUALIZAR LAS TRES ESP32 EN THONNY
+
+Hay que actualizar LAS TRES placas, porque el mapa cambia a:
+almacen-21x17-multirruta-v3
+
+Para cada ESP32:
+
+a) Conectala por USB, selecciona su puerto COM y pulsa Detener o Ctrl+C.
+b) Copia a la raiz del ESP32 estos archivos del firmware actualizado:
+
+   world.py
+   aco.py
+   wire.py
+   agent.py
+   transport.py
+   main.py
+
+c) Copia el config.py que corresponde a esa placa y guardalo como config.py:
+
+   ESP32 1: firmware/nodo1/config.py
+   ESP32 2: firmware/nodo2/config.py
+   ESP32 3: firmware/nodo3/config.py
+
+d) Comprueba que haya siete archivos .py en la raiz del ESP32.
+e) Reinicia la placa para cargar todos los modulos nuevos.
+
+La consola debe indicar MAPA almacen-21x17-multirruta-v3 y 160 iteraciones.
+Enciende primero el nodo 1; despues los nodos 2 y 3.
+
+3. ABRIR EL GEMELO CON DOCKER
+
+Conecta el computador a ENJAMBRE_ACO (clave Hormigas2026).
+
+En PowerShell ejecuta, uno por uno:
+
+  cd "C:\Users\Asus\Desktop\Enjambre_ACO_ESP32_PyBullet"
+  docker compose up -d --force-recreate gemelo
+
+La imagen ya construida aporta las dependencias. El compose actualizado
+carga firmware y simulador desde las carpetas del computador.
+
+Abre http://127.0.0.1:18080 y recarga con Ctrl+F5.
+Espera a ver 3/3 nodos conectados y pulsa Iniciar.
+
+La busqueda tarda como minimo 16 segundos mas el calculo; despues los nodos
+eligen sus rutas y un recorrido de 40 pasos tarda unos 26 segundos.
+Activa Ver alternativas exploradas para ver las rutas recibidas.
+
+Pulsa Reiniciar y luego Iniciar para un nuevo ensayo.
+El CSV nuevo se guarda en data/telemetria_multirruta_v3.csv.
+
+SI ALGUN NODO NO APARECE
+
+Comprueba el identificador del mapa y las 160 iteraciones en las TRES
+consolas de Thonny. Los archivos anteriores usan un mapa incompatible.
+
+En PowerShell:
+
+  docker compose logs --tail=40 gemelo
+  (Invoke-RestMethod http://127.0.0.1:18080/api/state).udp | Format-List
+
+La verificacion local y su alcance estan documentados en docs/PRUEBAS.md.
+El ensayo de la nueva version con las placas se confirma en tu computador.

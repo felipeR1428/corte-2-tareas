@@ -1,0 +1,19 @@
+services:
+  gemelo:
+    build: .
+    environment:
+      HUB_IP: "192.168.4.1"
+      HUB_PORT: "4210"
+      UDP_PORT: "4211"
+      REPLY_PORT: "4211"
+      HTTP_BIND: "0.0.0.0"
+      PANEL_URL: "http://127.0.0.1:18080"
+      UDP_PROXY_IPS: "auto"
+    ports:
+      - "127.0.0.1:18080:8080/tcp"
+      - "0.0.0.0:4211:4211/udp"
+    volumes:
+      - ./data:/app/data
+      - ./simulador:/app/simulador:ro
+      - ./firmware:/app/firmware:ro
+    init: true

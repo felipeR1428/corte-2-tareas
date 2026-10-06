@@ -1,0 +1,45 @@
+CORRECCION UDP PARA DOCKER DESKTOP
+
+La prueba del montaje recibio un estado del nodo 1 desde
+172.18.0.1:34737. Docker cambia la IP y el puerto de origen; la version
+anterior solo permitia 192.168.4.1:4210 y descartaba el datagrama.
+
+APLICAR EN EL COMPUTADOR
+
+1. Extrae Actualizacion_UDP_Docker_v2.zip.
+2. Copia su contenido dentro de:
+   C:\Users\Asus\Desktop\Enjambre_ACO_ESP32_PyBullet
+   Acepta reemplazar los archivos existentes.
+   Deben quedar compose.yaml y la carpeta simulador en la raiz del proyecto.
+3. Mantén los ESP32 encendidos y el computador conectado a ENJAMBRE_ACO.
+4. En PowerShell ejecuta, uno por uno:
+
+   cd "C:\Users\Asus\Desktop\Enjambre_ACO_ESP32_PyBullet"
+   docker compose up -d --force-recreate gemelo
+
+5. Abre http://127.0.0.1:18080 y espera unos 10 segundos.
+6. Cuando se muestren 3/3 nodos conectados, pulsa Iniciar.
+
+El contenedor usa la imagen ya construida para las dependencias y carga el
+simulador actualizado desde la carpeta del proyecto, montada como lectura.
+UDP_PROXY_IPS=auto detecta la puerta de enlace del contenedor; la validacion
+del protocolo, del mapa, de los nodos y de las rutas sigue activa.
+
+SI CONTINUA EN 0/3
+
+Ejecuta en PowerShell:
+
+   (Invoke-RestMethod http://127.0.0.1:18080/api/state).udp | Format-List
+
+Debe aparecer la IP del gateway en proxy_ips. received debe aumentar e
+ignored debe conservarse en cero para los mensajes del montaje.
+Comparte este resultado y:
+
+   docker compose logs --tail=30 gemelo
+
+VERIFICACION
+
+Se reprodujo el fallo de la version anterior con un proxy local que cambia
+la IP y el puerto. La version corregida supero trece pruebas, incluyendo
+control y telemetria de tres agentes sobre UDP real local. La confirmacion
+del ensayo completo con las placas se realiza en el computador del montaje.

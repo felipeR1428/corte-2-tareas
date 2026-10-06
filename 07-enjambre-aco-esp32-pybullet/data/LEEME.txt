@@ -1,0 +1,2 @@
+Aqui se guardara telemetria_multirruta_v3.csv al ejecutar el gemelo digital.
+La carpeta se monta como volumen cuando utilizas Docker Compose.

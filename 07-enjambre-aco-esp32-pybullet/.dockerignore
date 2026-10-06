@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+data
+docs
+tests
+tools
+.venv

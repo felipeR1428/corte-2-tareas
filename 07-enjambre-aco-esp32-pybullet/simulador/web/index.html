@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enjambre ACO · Gemelo digital</title>
+<style>
+:root{color-scheme:dark;--bg:#0b111b;--panel:#111b29;--line:#253246;--text:#e8eff6;--muted:#94a6bb;--orange:#ff9a52;--teal:#31c9ca;--purple:#b199ff;--green:#76ddba}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1500px;margin:auto;padding:28px 32px 36px}header{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700}h1{font-size:29px;letter-spacing:-.7px;margin:4px 0}p{margin:0;color:var(--muted)}.badge{border:1px solid var(--line);padding:8px 13px;border-radius:24px;color:var(--muted);font-size:12px;white-space:nowrap}.badge.online{color:var(--green);border-color:#31564e}.dot{display:inline-block;width:7px;height:7px;background:currentColor;border-radius:50%;margin-right:8px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}.actions{display:flex;gap:8px;flex-wrap:wrap}button,.download{border:1px solid var(--line);background:#1b293b;border-radius:8px;padding:10px 16px;color:var(--text);font:600 13px system-ui;cursor:pointer;text-decoration:none;display:inline-block}button:hover,.download:hover{background:#293b53}button.primary{background:var(--teal);color:#092127;border-color:var(--teal)}button:disabled{opacity:.5;cursor:wait}.run-message{font-size:13px;color:var(--muted);text-align:right}.layout{display:grid;grid-template-columns:minmax(0,1fr) 304px;gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}.panel-head{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:center}.panel-head strong{font-size:14px}.caption{font-size:11px;color:var(--muted)}.viewport{position:relative;background:#0b111b}.viewport img{display:block;width:100%;aspect-ratio:1.6;object-fit:contain;user-select:none;touch-action:none;cursor:grab}.viewport img:active{cursor:grabbing}.overlay{position:absolute;left:14px;top:14px;font-size:11px;padding:6px 10px;border-radius:5px;background:#07111ade;color:#d5e8f1;pointer-events:none}.view-footer{padding:11px 16px;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;gap:10px}.view-footer button{padding:4px 8px;font-size:11px}.sidebar{display:flex;flex-direction:column;gap:12px}.node{padding:16px}.node-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.node-title strong{font-size:14px}.node-status{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 7px;border-radius:5px}.node-metric{font-size:29px;font-weight:700;letter-spacing:-1px}.node-metric small{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:0;margin-left:5px}.node-detail{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;margin-top:9px}.node-detail b{color:var(--text);font-weight:600}.progress{height:4px;background:#263247;border-radius:3px;margin-top:14px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--color);transition:width .3s}.metric-panel{padding:17px 18px;margin-top:auto}.metric-panel .value{font-size:24px;color:var(--green);font-weight:650}.metric-panel p{font-size:11px}.lower{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.canvas-wrap{padding:14px 16px}canvas{display:block;width:100%;height:320px}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);padding:0 17px 13px}.legend i{display:inline-block;height:3px;width:14px;vertical-align:middle;margin-right:5px}.foot{margin-top:17px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px}.error{color:#ffb7a4;font-size:12px;margin-top:12px;min-height:18px}.optimal{color:var(--green)}.legend label{display:inline-flex;align-items:center;gap:5px}.legend input{accent-color:var(--teal)}.map-controls{padding-top:8px}
+@media(max-width:1050px){main{padding:20px}.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(3,1fr)}.metric-panel{grid-column:1/-1}.node{padding:12px}.node-detail{font-size:10px}.node-metric{font-size:25px}}
+@media(max-width:650px){main{padding:15px}.toolbar,header{align-items:flex-start;flex-direction:column}.run-message{text-align:left}.lower{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr}.metric-panel{grid-column:auto}h1{font-size:25px}.view-footer{flex-wrap:wrap}.foot{flex-direction:column}.caption{font-size:10px}}
+</style>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">OPTIMIZACIÓN POR COLONIA DE HORMIGAS</div><h1>Un enjambre. Tres rutas.</h1><p>Laberinto 21 × 17 · alternativas ACO en cada ESP32 · PyBullet</p></div><div id="connection" class="badge"><span class="dot"></span>Esperando nodos ESP32</div></header>
+<div class="toolbar"><div class="actions"><button id="start" class="primary" data-action="start">▶ Iniciar</button><button data-action="pause">Ⅱ Pausar</button><button data-action="reset">↺ Reiniciar</button><a class="download" href="/api/export">↓ Exportar CSV</a></div><div class="run-message" id="message">Conecta el computador a ENJAMBRE_ACO.</div></div>
+<div class="layout">
+<section class="panel"><div class="panel-head"><strong>Laberinto · vista 3D</strong><span class="caption">PyBullet / render CPU</span></div><div class="viewport"><img id="scene" src="/frame.jpg" alt="Tres robots virtuales en el laberinto PyBullet"><div id="overlay" class="overlay">Sin telemetría de los ESP32</div></div><div class="view-footer"><span>Arrastrar: girar · Shift + arrastrar: desplazar · rueda: acercar</span><button id="camera">Centrar cámara</button></div></section>
+<aside class="sidebar" id="nodes"></aside>
+</div>
+<div class="lower"><section class="panel"><div class="panel-head"><strong>Mejor ruta por nodo</strong><span class="caption">Costo en pasos · iteración ACO</span></div><div class="canvas-wrap"><canvas id="chart" aria-label="Historial del mejor costo de los tres nodos"></canvas></div><div class="legend"><span><i style="background:var(--orange)"></i>ESP32 1</span><span><i style="background:var(--teal)"></i>ESP32 2</span><span><i style="background:var(--purple)"></i>ESP32 3</span><span><i style="background:var(--green)"></i>Mínimo del mapa</span></div></section>
+<section class="panel"><div class="panel-head"><strong>Mapa y rutas recibidas</strong><span class="caption" id="route-summary">A: salida · G: meta</span></div><div class="canvas-wrap"><canvas id="map" aria-label="Mapa del laberinto y rutas encontradas por los ESP32"></canvas></div><div class="legend"><label><input type="checkbox" id="alternatives">Ver alternativas exploradas</label><span id="scale">Escala: 0,50 m / celda</span></div></section></div>
+<div class="error" id="error"></div><div class="foot"><span id="packets">0 datagramas recibidos</span><span>La posición representa el avance lógico del nodo ESP32.</span></div>
+</main>
+<script>
+const colors=['#ff9a52','#31c9ca','#b199ff'];let state=null;const $=id=>document.getElementById(id);
+const phases={SELECTING:'Eligiendo ruta',IDLE:'Listo',SEARCHING:'Buscando',MOVING:'Recorriendo',ARRIVED:'En la meta',NO_PATH:'Sin ruta'};
+$('nodes').innerHTML=[1,2,3].map(id=>`<section class="panel node" style="--color:${colors[id-1]}"><div class="node-title"><strong><span class="dot" style="color:${colors[id-1]}"></span>ESP32 ${id}</strong><span class="node-status" id="status${id}">Sin datos</span></div><div class="node-metric" id="cost${id}">—<small>pasos</small></div><div class="node-detail"><span>Iteración <b id="iter${id}">0 / 160</b></span><span id="optimal${id}">Esperando</span></div><div class="progress"><span id="progress${id}"></span></div><div class="node-detail"><span>Alternativas del menor costo <b id="alt${id}">0</b></span></div><div class="node-detail"><span>Candidatas evaluadas <b id="candidates${id}">0</b></span></div><div class="node-detail"><span>Aportes enviados <b id="tx${id}">0</b></span><span>Recibidos <b id="rx${id}">0</b></span></div></section>`).join('')+`<section class="panel metric-panel"><div class="caption">REFERENCIA DEL MAPA</div><div class="value" id="minimum">— pasos</div><p id="minimum-detail">Verificación independiente del costo mínimo.</p><p id="maze-detail"></p></section>`;
+async function post(path,body){const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!response.ok)throw Error((await response.json()).error);return response.json()}
+document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',async()=>{button.disabled=true;try{await post('/api/command',{action:button.dataset.action});$('error').textContent='';await refresh()}catch(error){$('error').textContent=error.message}finally{button.disabled=false}}));
+$('camera').onclick=()=>post('/api/camera',{action:'reset'}).catch(()=>{});
+function renderState(s){state=s;const online=s.nodes.filter(n=>n.online).length;$('connection').className='badge'+(online===3?' online':'');$('connection').innerHTML=`<span class="dot"></span>${s.source==='PRUEBA_LOCAL'?'PRUEBA LOCAL · ':''}${online} / 3 nodos conectados`;$('overlay').textContent=s.source==='PRUEBA_LOCAL'?'Prueba en CPython · sin placas ESP32':online?`Telemetría ESP32 · ${online} nodos activos`:'Sin telemetría de los ESP32';
+for(const n of s.nodes){const id=n.src;const phase=phases[n.phase]||'Sin datos';$('status'+id).textContent=n.online?(n.running||n.phase==='ARRIVED'||n.phase==='IDLE'?phase:'Pausado'):'Desconectado';$('cost'+id).innerHTML=(n.best_cost??'—')+'<small>pasos</small>';$('iter'+id).textContent=(n.iteration??0)+' / '+(n.max_iterations??160);$('optimal'+id).textContent=n.optimal?'Mínimo encontrado':n.best_cost?'Mejor hasta ahora':'Esperando';$('optimal'+id).className=n.optimal?'optimal':'';$('progress'+id).style.width=(100*(n.iteration??0)/(n.max_iterations||160))+'%';$('tx'+id).textContent=n.shared_tx??0;$('rx'+id).textContent=n.shared_rx??0;$('alt'+id).textContent=n.alternatives??0;$('candidates'+id).textContent=n.candidates??0}
+$('minimum').textContent=s.optimal_steps+' pasos';$('minimum-detail').textContent=`${s.optimal_meters.toFixed(2).replace('.',',')} m en el modelo · verificado por BFS.`;const maze=s.maze||{};$('maze-detail').textContent=`${maze.width||s.grid[0].length} × ${maze.height||s.grid.length} · ${maze.junctions??'—'} cruces · ${maze.minimum_routes??'—'} rutas mínimas posibles`;$('route-summary').textContent=`${s.distinct_routes??0} / 3 rutas distintas · A → G`;$('packets').textContent=`${s.packets} datagramas recibidos · ${s.errors} descartes o errores`;
+const c=s.control;let message='Pulsa Iniciar cuando estén conectados los tres nodos.';if(c.pending.length)message=`${c.timed_out?'Sin confirmación de':'Esperando confirmación de'} nodo${c.pending.length===1?'':'s'} ${c.pending.join(', ')}.`;else if(c.action==='pause')message='Enjambre pausado. Pulsa Reanudar para continuar.';else if(c.action==='reset')message='Nuevo ensayo listo. Pulsa Iniciar.';else if(c.action==='start')message='Los tres nodos confirmaron el inicio.';if(s.nodes.every(n=>n.online&&n.phase==='ARRIVED'))message=`Los tres llegaron a la meta con ${s.distinct_routes??0} rutas distintas. Reinicia para repetir.`;$('message').textContent=message;$('start').textContent=c.action==='pause'?'▶ Reanudar':'▶ Iniciar';$('error').textContent=s.last_error||(!s.renderer_running?'El renderizador se detuvo; revisa la consola.':'');drawChart(s);drawMap(s)}
+function context(id){const canvas=$(id),rect=canvas.getBoundingClientRect(),ratio=window.devicePixelRatio||1;canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);const ctx=canvas.getContext('2d');ctx.scale(ratio,ratio);return[ctx,rect.width,rect.height]}
+function drawChart(s) {
+  const [ctx,w,h]=context('chart'), pad={l:40,r:17,t:15,b:31};
+  const maximum=Math.max(1,...s.nodes.map(n=>n.max_iterations||160));
+  const high=Math.max(s.optimal_steps+4,...s.nodes.flatMap(n=>n.history.map(p=>p[1])))+1;
+  const low=Math.max(0,s.optimal_steps-2), tick=Math.max(2,Math.ceil((high-low)/8/2)*2);
+  const xx=i=>pad.l+i/maximum*(w-pad.l-pad.r);
+  const yy=c=>h-pad.b-(c-low)/(high-low)*(h-pad.t-pad.b);
+  ctx.font='11px system-ui';ctx.strokeStyle='#29374b';ctx.fillStyle='#94a6bb';
+  for(let v=Math.ceil(low);v<=high;v+=tick){
+    ctx.beginPath();ctx.moveTo(pad.l,yy(v));ctx.lineTo(w-pad.r,yy(v));ctx.stroke();ctx.fillText(v,10,yy(v)+4);
+  }
+  for(let i=0;i<=4;i++){const v=Math.round(maximum*i/4);ctx.fillText(v,xx(v)-8,h-9)}
+  ctx.setLineDash([5,5]);ctx.strokeStyle='#76ddba';ctx.beginPath();ctx.moveTo(pad.l,yy(s.optimal_steps));ctx.lineTo(w-pad.r,yy(s.optimal_steps));ctx.stroke();ctx.setLineDash([]);
+  for(const n of s.nodes){
+    ctx.strokeStyle=colors[n.src-1];ctx.fillStyle=colors[n.src-1];ctx.lineWidth=2;ctx.beginPath();
+    n.history.forEach((point,i)=>{if(i===0)ctx.moveTo(xx(point[0]),yy(point[1])+(n.src-2)*2);else ctx.lineTo(xx(point[0]),yy(point[1])+(n.src-2)*2)});
+    ctx.stroke();
+    if(n.history.length){const point=n.history[n.history.length-1];ctx.beginPath();ctx.arc(xx(point[0]),yy(point[1])+(n.src-2)*2,3,0,Math.PI*2);ctx.fill()}
+  }
+  if(!s.nodes.some(n=>n.history.length)){ctx.fillStyle='#94a6bb';ctx.fillText('El historial aparecerá al iniciar ACO.',pad.l+12,pad.t+25)}
+}
+function drawMap(s) {
+  const [ctx,w,h]=context('map'), rows=s.grid.length,cols=s.grid[0].length;
+  const cell=Math.min((w-24)/cols,(h-12)/rows),ox=(w-cols*cell)/2,oy=(h-rows*cell)/2;
+  ctx.textAlign='center';ctx.font='bold 11px system-ui';
+  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+    const v=s.grid[y][x];ctx.fillStyle=v==='#'?'#34465b':v==='A'?'#205248':v==='G'?'#866528':'#1b2a3c';
+    ctx.fillRect(ox+x*cell+1,oy+y*cell+1,cell-2,cell-2);
+    if(v==='A'||v==='G'){ctx.fillStyle='#eff4fa';ctx.fillText(v,ox+(x+.5)*cell,oy+(y+.5)*cell+4)}
+  }
+  function path(route,node,alternative=false){
+    const offset=(node-2)*1.8;ctx.strokeStyle=colors[node-1];ctx.lineWidth=alternative?1:2.6;
+    ctx.globalAlpha=alternative ? 0.24 : 1;ctx.setLineDash(alternative?[3,4]:[]);ctx.beginPath();
+    route.forEach((id,i)=>{const x=ox+(id%cols+.5)*cell+offset,y=oy+(Math.floor(id/cols)+.5)*cell+offset;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});
+    ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
+  }
+  if($('alternatives').checked)for(const n of s.nodes)for(const route of n.saved_paths||[])path(route,n.src,true);
+  for(const n of s.nodes){
+    path(n.route?.length?n.route:n.best_path||[],n.src);
+    if(n.x!=null){const offset=(n.src-2)*1.8;ctx.fillStyle=colors[n.src-1];ctx.beginPath();ctx.arc(ox+(n.x+.5)*cell+offset,oy+(n.y+.5)*cell+offset,4,0,Math.PI*2);ctx.fill()}
+  }
+  ctx.textAlign='left';
+}
+$('alternatives').onchange=()=>{if(state)drawMap(state)};
+async function refresh(){try{const response=await fetch('/api/state');if(!response.ok)throw Error('No se pudo leer el estado');renderState(await response.json())}catch(error){$('error').textContent='No hay respuesta del gemelo digital. Revisa la consola.'}}
+let lastPointer=null,delta={dx:0,dy:0,action:'orbit'};const scene=$('scene');scene.addEventListener('pointerdown',e=>{scene.setPointerCapture(e.pointerId);lastPointer={x:e.clientX,y:e.clientY};e.preventDefault()});scene.addEventListener('pointermove',e=>{if(!lastPointer)return;delta.dx+=e.clientX-lastPointer.x;delta.dy+=e.clientY-lastPointer.y;delta.action=e.shiftKey?'pan':'orbit';lastPointer={x:e.clientX,y:e.clientY}});scene.addEventListener('pointerup',()=>lastPointer=null);scene.addEventListener('pointercancel',()=>lastPointer=null);scene.addEventListener('wheel',e=>{e.preventDefault();post('/api/camera',{action:'zoom',dy:e.deltaY}).catch(()=>{})},{passive:false});setInterval(()=>{if(delta.dx||delta.dy){const body={...delta};delta.dx=delta.dy=0;post('/api/camera',body).catch(()=>{})}},80);
+scene.onload=()=>setTimeout(()=>scene.src='/frame.jpg?t='+Date.now(),140);scene.onerror=()=>setTimeout(()=>scene.src='/frame.jpg?t='+Date.now(),1000);scene.src='/frame.jpg?t='+Date.now();setInterval(refresh,350);refresh();window.addEventListener('resize',()=>{if(state){drawChart(state);drawMap(state)}});
+</script>
+</body>
+</html>
